@@ -1,0 +1,111 @@
+/* css/fill_verbs_style.css */
+#fill-verbs-app {
+    max-width: 750px;
+    margin: 20px auto;
+    padding: 20px 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#fill-verbs-app h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.sentence-block {
+    margin-bottom: 20px;
+    padding: 18px;
+    background-color: #f9f9f9;
+    border: 1px solid #e7e7e7;
+    border-radius: 6px;
+    font-size: 1.1em; /* Slightly larger text for readability */
+    line-height: 2.2; /* Increased line height for better spacing with dropdowns */
+}
+
+.sentence-block p { /* The paragraph holding the sentence parts */
+    margin: 0;
+    display: inline; /* Keep text and select on the same flow */
+}
+.sentence-block span.text-segment{ /* Text parts of the sentence */
+    vertical-align: middle;
+}
+
+
+.sentence-block select {
+    font-size: 1em; /* Match surrounding text size */
+    padding: 5px 8px;
+    margin: 0 4px; /* Space around dropdown */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    min-width: 90px; /* Minimum width for dropdown */
+    height: 34px; /* Consistent height */
+    vertical-align: middle; /* Align with text */
+    cursor: pointer;
+}
+
+.sentence-block select.default-option {
+    color: #777; /* Style for the default "-- select --" option */
+}
+
+.sentence-block select.correct {
+    border: 2px solid #28a745 !important; /* Green */
+    background-color: #e6ffe6;
+    color: #155724;
+}
+
+.sentence-block select.incorrect {
+    border: 2px solid #dc3545 !important; /* Red */
+    background-color: #ffe6e6;
+    color: #721c24;
+}
+
+.feedback-icon-inline { /* For checkmark/cross icons next to dropdowns */
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.feedback-icon-inline.correct { color: #28a745; }
+.feedback-icon-inline.incorrect { color: #dc3545; }
+
+#verify-sentences-button {
+    display: block;
+    width: fit-content;
+    margin: 30px auto 20px auto;
+    padding: 12px 28px;
+    font-size: 1.15em;
+    color: white;
+    background-color: #5cb85c; /* Green */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#verify-sentences-button:hover {
+    background-color: #4cae4c;
+}
+
+#results-container p {
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+#results-container p.success {
+    background-color: #d4edda; /* Light green */
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+#results-container p.failure {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

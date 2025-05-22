@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unité 1 - Choisir et Apprendre le Vocabulaire</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/vocab_style.css"> <style>
+        /* Styles for the word selection list */
+        #word-selection-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        #word-list-container {
+            display: grid; /* Using grid for better alignment */
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive columns */
+            gap: 10px;
+            margin-bottom: 20px;
+            max-height: 350px; /* Adjust as needed */
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+        }
+        .word-item-select label {
+            display: block;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .word-item-select label:hover {
+            background-color: #e9e9e9;
+        }
+        .word-item-select input[type="checkbox"] {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .word-item-select span {
+            vertical-align: middle;
+        }
+        .selection-controls button, #start-selected-flashcards-button {
+            padding: 8px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #5cb85c; /* Green */
+            color: white;
+            font-size: 0.9em;
+        }
+        #start-selected-flashcards-button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            background-color: #50a3a2; /* Teal from main style */
+        }
+        .selection-controls button:hover, #start-selected-flashcards-button:hover {
+            opacity: 0.9;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Unité 1: Vocabulaire</h1>
+        <p><a href="../unit1.html">Retour à l'Unité 1</a></p>
+    </header>
+
+    <main>
+        <section id="word-selection-section">
+            <h2>Choisis tes mots à apprendre :</h2>
+            <div id="word-list-container">
+                <p>Chargement des mots...</p>
+            </div>
+            <div class="selection-controls" style="margin-top:10px; text-align: center;">
+                <button id="select-all-words-button">Tout sélectionner</button>
+                <button id="deselect-all-words-button">Tout désélectionner</button>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="start-selected-flashcards-button">Commencer les Flashcards</button>
+            </div>
+        </section>
+
+        <section id="flashcards-section" class="hidden">
+            <h2>Flashcards</h2>
+            <div class="controls" style="text-align: center; margin-bottom: 15px;">
+                <button id="toggle-language-button">Commencer par l'allemand</button>
+            </div>
+            <div class="flashcard-container">
+                <div class="flashcard">
+                    <div class="flashcard-front">
+                        <p id="flashcard-front-text"></p>
+                        <button id="flashcard-audio-button" class="flashcard-audio-btn" style="display:none;">🔊 Écouter</button>
+                    </div>
+                    <div class="flashcard-back">
+                        <p id="flashcard-back-text"></p>
+                        <img id="flashcard-image" class="flashcard-img" src="" alt="Image du vocabulaire" style="display:none; max-width: 100px; margin-top:10px;">
+                    </div>
+                </div>
+            </div>
+            <div class="navigation-buttons" style="text-align: center; margin-top: 15px;">
+                <button id="prev-flashcard">Précédent</button>
+                <button id="flip-flashcard">Retourner</button>
+                <button id="next-flashcard">Suivant</button>
+            </div>
+             <p style="text-align:center; margin-top:15px;"><button id="back-to-word-selection">Choisir d'autres mots</button></p>
+        </section>
+
+        <section id="quiz-section" class="hidden">
+             <h2>Quiz!</h2>
+             <div id="quiz-question-area">
+                 <p id="quiz-word">Quel est le mot français pour: "<span id="quiz-prompt-word">Word</span>"?</p>
+             </div>
+             <div id="quiz-options">
+                 <button class="quiz-option"></button>
+                 <button class="quiz-option"></button>
+                 <button class="quiz-option"></button>
+                 <button class="quiz-option"></button>
+             </div>
+             <p id="quiz-feedback"></p>
+             <button id="next-quiz-question" style="display:none;">Question Suivante</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Jennifer Matos</p>
+    </footer>
+
+    <script src="../js/vocabulary.js"></script>
+    <script src="../js/vocab_app_unit1.js"></script> 
+</body>
+</html>

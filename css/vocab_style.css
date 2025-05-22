@@ -1,0 +1,98 @@
+/* css/vocab_style.css */
+
+/* Flashcards */
+.flashcard-container {
+    perspective: 1000px; /* For 3D flip effect */
+    margin: 20px auto;
+    width: 300px;
+    height: 180px;
+}
+
+.flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hides the back of the panel during rotation */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 1.5em;
+}
+
+.flashcard-front {
+    background-color: #eef; /* Light blue-ish */
+}
+
+.flashcard-back {
+    background-color: #efe; /* Light green-ish */
+    transform: rotateY(180deg);
+}
+
+#flashcard-image {
+    max-width: 80px;
+    max-height: 80px;
+    margin-top: 10px;
+}
+
+#flashcard-audio-button {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+
+/* Quiz */
+#quiz-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#quiz-options button {
+    display: inline-block; /* or block with margin auto for centering */
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 1em;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#quiz-options button:hover {
+    background-color: #e0e0e0;
+}
+
+#quiz-options button.correct {
+    background-color: #a3d9a5; /* Light green */
+    border-color: #77ab59;
+}
+
+#quiz-options button.incorrect {
+    background-color: #f9a7a7; /* Light red */
+    border-color: #e06c75;
+}
+
+#quiz-feedback {
+    margin-top: 15px;
+    font-weight: bold;
+}

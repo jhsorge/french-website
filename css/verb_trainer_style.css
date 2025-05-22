@@ -1,0 +1,157 @@
+/* css/verb_trainer_style.css */
+
+#verb-trainer-app {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#verb-selection-area h2, #verb-practice-forms h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#verb-checkbox-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.verb-select-item label {
+    display: block;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.verb-select-item label:hover {
+    background-color: #f0f0f0;
+}
+
+.verb-select-item input[type="checkbox"] {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+#start-practice-button, #check-answers-button, #back-to-verb-selection-vt {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    color: white;
+    background-color: #50a3a2; /* Teal */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#start-practice-button:hover, #check-answers-button:hover, #back-to-verb-selection-vt:hover {
+    background-color: #408180;
+}
+
+#check-answers-button {
+    background-color: #5cb85c; /* Green */
+}
+#check-answers-button:hover {
+    background-color: #4cae4c;
+}
+#back-to-verb-selection-vt {
+    background-color: #f0ad4e; /* Orange */
+    font-size: 0.9em;
+    padding: 8px 15px;
+}
+#back-to-verb-selection-vt:hover {
+    background-color: #ec971f;
+}
+
+
+.conjugation-table {
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+    font-size: 1em;
+}
+
+.conjugation-table caption {
+    font-size: 1.6em;
+    font-weight: bold;
+    padding: 10px;
+    color: #50a3a2; /* Teal */
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.conjugation-table th, .conjugation-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.conjugation-table th { /* Pronoun column */
+    background-color: #f7f9fa;
+    width: 30%;
+    font-weight: bold;
+}
+
+.conjugation-table td input[type="text"] {
+    width: calc(100% - 16px); /* Adjust for padding */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.conjugation-table td input[type="text"].correct {
+    border-color: #28a745; /* Green border */
+    background-color: #e6ffe6; /* Light green background */
+    color: #155724;
+}
+
+.conjugation-table td input[type="text"].incorrect {
+    border-color: #dc3545; /* Red border */
+    background-color: #ffe6e6; /* Light red background */
+    color: #721c24;
+}
+
+.feedback-icon {
+    margin-left: 8px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.feedback-icon.correct { color: #28a745; }
+.feedback-icon.incorrect { color: #dc3545; }
+
+.hidden {
+    display: none !important;
+}
+.check-verb-button {
+    padding: 10px 18px; /* Slightly smaller than main action buttons */
+    font-size: 1em;
+    color: white;
+    background-color: #5cb85c; /* Green, like the original check button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.check-verb-button:hover {
+    background-color: #4cae4c;
+}
