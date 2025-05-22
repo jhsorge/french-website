@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unité 1 - Entraîneur de Verbes</title>
+    <title>Unité 2 - Entraîneur de Verbes</title>
     <link rel="stylesheet" href="../css/style.css"> 
     <link rel="stylesheet" href="../css/verb_trainer_style.css"> 
 </head>
 <body>
     <header>
-        <h1>Entraîneur de Verbes - Unité 1</h1>
-        <p><a href="../unit1.html">Retour à l'Unité 1</a></p> </header>
+        <h1>Entraîneur de Verbes - Unité 2</h1>
+        <p><a href="../unit2.html">Retour à l'Unité 2</a></p> </header>
 
     <main>
         <section id="verb-trainer-app">
@@ -35,5 +35,16 @@
         <p>&copy; 2025 Jennifer Matos</p>
     </footer>
 
-    <script src="../js/verbs_unit1.js"></script> <script src="../js/verb_trainer_app.js"></script> </body>
+    <script src="../js/verbs_unit2.js"></script>
+    <script src="../js/verb_trainer_app.js"></script>
+    <script>
+      // Remove any default auto-initialization for verbsUnit1
+      // Only call the trainer for unit 2
+      setTimeout(function() {
+        if (typeof verbsUnit2 !== 'undefined' && typeof initVerbTrainerApp === 'function') {
+          initVerbTrainerApp(verbsUnit2);
+        }
+      }, 0);
+    </script>
+</body>
 </html>

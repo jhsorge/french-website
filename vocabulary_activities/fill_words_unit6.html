@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6 – Drag & Drop: Mots dans les phrases</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/fill_verbs_style.css">
+    <style>
+        .drag-sentence { margin: 18px 0; font-size: 1.2em; }
+        .drag-gap {
+            display: inline-block;
+            min-width: 90px;
+            min-height: 32px;
+            border: 2px dashed #50a3a2;
+            border-radius: 8px;
+            background: #fafdff;
+            vertical-align: middle;
+            margin: 0 6px;
+            padding: 2px 8px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .drag-word-choice {
+            display: inline-block;
+            background: #50a3a2;
+            color: #fff;
+            border-radius: 12px;
+            padding: 6px 18px;
+            margin: 0 8px 8px 0;
+            font-size: 1.1em;
+            cursor: grab;
+            user-select: none;
+        }
+        .drag-word-choice.dragging { opacity: 0.5; }
+        .drag-gap.filled { background: #e0f7fa; }
+        .drag-gap.correct { background: #c8e6c9; border-color: #388e3c; }
+        .drag-gap.incorrect { background: #ffcdd2; border-color: #c62828; }
+        .drag-choices-row { margin: 18px 0 24px 0; }
+        .drag-controls { margin: 18px 0; text-align: center; }
+        .drag-feedback { font-weight: bold; margin: 12px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Unité 6 – Drag & Drop : Mots dans les phrases</h1>
+        <nav>
+            <ul>
+                <li><a href="../unit6.html">Retour à l'unité 6</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="drag-app-container"></div>
+    </main>
+    <script>
+const dragSentences = [
+    { s: "Mes parents habitent à ... , une ville en France.", w: "Limoges" },
+    { s: "Ce soir, nous allons à une grande ... pour l'anniversaire de Léo.", w: "fête" },
+    { s: "En juin, il y a ... dans beaucoup de villes en France.", w: "la Fête de la musique" },
+    { s: "Mon frère rêve d'être un ... célèbre.", w: "chanteur" },
+    { s: "Les amis forment un ... de musique rock.", w: "groupe" },
+    { s: "Je voudrais aller au ... de mon chanteur préféré.", w: "concert" },
+    { s: "Ce livre sur les animaux est très ... .", w: "intéressant" },
+    { s: "Marie est ... parce qu'elle a un nouveau vélo.", w: "contente" },
+    { s: "Il y a beaucoup de ... dans le parc le dimanche.", w: "gens" },
+    { s: "Mon oncle est un ... ; il joue du piano.", w: "musicien" },
+    { s: "J'écris mes pensées dans mon ... chaque soir.", w: "journal" },
+    { s: "Ce n'est pas bon, c'est un ... gâteau.", w: "mauvais" },
+    { s: "Si tu as un ... , tu peux en parler à tes parents.", w: "problème" },
+    { s: "Le TGV est un train ... rapide.", w: "très" },
+    { s: "J'aime manger une ... pomme après le sport.", w: "bonne" },
+    { s: "Papa Noël habite en ... , c'est loin !", w: "Finlande" },
+    { s: "Les enfants adorent les cadeaux de ... .", w: "Noël" },
+    { s: "Mon chat est ... et noir.", w: "petit" },
+    { s: "En été, nous allons en ... à la mer.", w: "vacances" },
+    { s: "Pour aller vite de Paris à Lyon, on prend le ... .", w: "TGV" },
+    { s: "Quand son ami part, Léo est ... .", w: "triste" },
+    { s: "Ce film n'est pas intéressant, il est ... !", w: "nul" },
+    { s: "Mon frère est plus ... que moi.", w: "grand" },
+    { s: "Le train arrive à la ... à midi.", w: "gare" },
+    { s: "Pour aller à Toulouse, il faut prendre le train à ... à Paris.", w: "la gare d'Austerlitz" },
+    { s: "Les bus ne roulent pas aujourd'hui à cause de la ... .", w: "grève" },
+    { s: "Nous devons ... le professeur dans la cour.", w: "attendre" },
+    { s: "Je vais ... à ma grand-mère ce soir.", w: "téléphoner" },
+    { s: "... est une ville où il y a beaucoup d'étudiants.", w: "Poitiers" },
+    { s: "Tu ... la musique du voisin ?", w: "entends" },
+    { s: "Il ne faut pas ... son ticket de métro.", w: "perdre" },
+    { s: "Nous préparons un long ... en Allemagne.", w: "voyage" },
+    { s: "Le chemin pour aller à la maison est ... .", w: "long" },
+    { s: "J'ai mal à la ... après le match de foot.", w: "tête" },
+    { s: "Ne ... parce que tu vas perdre le jeu !", w: "fais pas la tête" },
+    { s: "Il faut ... aux questions du professeur.", w: "répondre" },
+    { s: "J'aime les t-shirts de couleur ... .", w: "rouge" },
+    { s: "L'herbe dans le parc est ... .", w: "verte" },
+    { s: "Le ciel aujourd'hui est ... .", w: "bleu" },
+    { s: "Après avoir bu beaucoup d'eau, j'... .", w: "ai envie de faire pipi" },
+    { s: "Après le cours de sport, nous faisons une ... .", w: "pause" },
+    { s: "Pour aller au salon, il faut ... l'escalier.", w: "descendre" },
+    { s: "..., le chat saute sur la table !", w: "Tout à coup" },
+    { s: "Dans l'histoire, le petit garçon rencontre un ... dans la forêt.", w: "loup" },
+    { s: "Je lis une histoire sur ... .", w: "Les loups de Chabrières" },
+    { s: "Cette petite fleur est très ... .", w: "jolie" },
+    { s: "Après une longue journée sans manger, j'ai une ... .", w: "faim de loup" },
+    { s: "Mon ... préféré est les spaghettis.", w: "plat" },
+    { s: "Quelle est ta ... préférée ? Moi, c'est le bleu.", w: "couleur" },
+    { s: "Le chat de ma voisine est tout ... .", w: "blanc" },
+    { s: "J'ai un crayon ... pour écrire.", w: "noir" },
+    { s: "Le ciel est ... aujourd'hui, il va peut-être pleuvoir.", w: "gris" },
+    { s: "J'aime les bananes parce qu'elles sont ... .", w: "jaunes" },
+    { s: "Le professeur lit un ... en classe.", w: "poème" },
+    { s: "A Paris, il y a de grands ... avec beaucoup de magasins.", w: "boulevards" },
+    { s: "J'habite sur le ... .", w: "Boulevard Louis Blanc" },
+    { s: "Il faut ... la vérité à ses amis.", w: "dire" },
+    { s: "A Limoges, on fait de la belle ... .", w: "porcelaine" },
+    { s: "J'aime tous les sports, ... le football.", w: "surtout" },
+    { s: "L'église ... est un monument à Limoges.", w: "Saint-Aurélien" },
+    { s: "Nous retrouvons nos amis sur la ... .", w: "place Saint-Pierre" },
+    { s: "Samedi soir, il y a un ... au collège.", w: "bal" },
+    { s: "Après la fête, nous allons ... chez nos grands-parents.", w: "rester" },
+    { s: "Les enfants aiment ... sur la musique.", w: "danser" },
+    { s: "Tu peux me ... ton stylo, s'il te plaît ?", w: "donner" },
+    { s: "Il est important de ... avec ses parents.", w: "parler" },
+    { s: "Léo porte une ... bleue et blanche.", w: "casquette" },
+    { s: "Si tu ne sais pas, tu peux ... au professeur.", w: "demander" },
+    { s: "Le chat dort ... la table et la chaise.", w: "entre" },
+    { s: "Tu peux me ... tes photos de vacances ?", w: "montrer" },
+    { s: "J'ai un ... stylo, pas celui-ci.", w: "autre" },
+    { s: "Il faut ... ses amis quand ils ont un problème.", w: "aider" },
+    { s: "... Ton livre n'est plus ici ?", w: "Quoi?" },
+    { s: "L'... est un très grand animal.", w: "éléphant" },
+    { s: "J'écoute souvent de la musique ... à la radio.", w: "pop" },
+    { s: "Mon frère adore le ... et la danse.", w: "hip-hop" },
+    { s: "Ma couleur ... est le vert.", w: "préférée" },
+    { s: "Je lis un ... intéressant sur les animaux.", w: "texte" },
+    { s: "Ma sœur joue du ... tous les jours.", w: "piano" },
+    { s: "Mon grand-père joue de l'... à la fête de famille.", w: "accordéon" },
+    { s: "Je vais envoyer un ... à mon ami pour son anniversaire.", w: "courriel" },
+    { s: "... papa, comment vas-tu ?", w: "cher" },
+    { s: "..., les vacances commencent !", w: "Enfin" },
+    { s: "J'ai ... temps pour jouer aujourd'hui.", w: "peu de" },
+    { s: "Il ... gâteaux dans la boîte.", w: "n’y a plus de" },
+    { s: "Il y a ... fleurs dans le jardin.", w: "beaucoup de" },
+    { s: "Je ... vélo.", w: "n’ai pas de" },
+    { s: "... frères as-tu ?", w: "combien de" },
+    { s: "Ce week-end, ... une promenade dans le parc.", w: "j’aimerais faire" },
+    { s: "Je voudrais ... des amis français.", w: "rencontrer" },
+    { s: "Je trouve une ... bizarre dans mon sac.", w: "chose" },
+    { s: "Il ne faut pas ... de faire ses devoirs.", w: "oublier" }
+];
+
+const chunkSize = 5;
+let currentChunk = 0;
+
+function shuffle(array) {
+    let arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function renderChunk() {
+    const container = document.getElementById('drag-app-container');
+    container.innerHTML = '';
+    const start = currentChunk * chunkSize;
+    const end = Math.min(start + chunkSize, dragSentences.length);
+    const chunk = dragSentences.slice(start, end);
+    // Progress bar (persistent)
+    const progressBarWrap = document.createElement('div');
+    progressBarWrap.style.width = '100%';
+    progressBarWrap.style.maxWidth = '420px';
+    progressBarWrap.style.margin = '0 auto 18px auto';
+    const percent = Math.floor((currentChunk * chunkSize / dragSentences.length) * 100);
+    progressBarWrap.innerHTML = `
+        <div style="margin-bottom:4px;color:#3b8686;font-weight:bold;text-align:center;">Progression : ${Math.min(currentChunk * chunkSize, dragSentences.length)} / ${dragSentences.length}</div>
+        <div style="background:#e0f7fa;border-radius:12px;height:22px;overflow:hidden;">
+            <div id="progress-inner" style="height:100%;background:linear-gradient(90deg,#50a3a2 60%,#3b8686 100%);border-radius:12px 0 0 12px;width:${percent}%;transition:width 0.4s;"></div>
+        </div>
+    `;
+    container.appendChild(progressBarWrap);
+    // Sentences
+    chunk.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'drag-sentence';
+        div.innerHTML = item.s.replace('...', `<span class=\"drag-gap\" data-idx=\"${idx}\"></span>`);
+        container.appendChild(div);
+    });
+    // Choices row
+    const choicesRow = document.createElement('div');
+    choicesRow.className = 'drag-choices-row';
+    const choices = shuffle(chunk.map(s => s.w));
+    choices.forEach((word, i) => {
+        const span = document.createElement('span');
+        span.className = 'drag-word-choice';
+        span.textContent = word;
+        span.setAttribute('draggable', 'true');
+        span.id = `drag-word-choice-${i}`;
+        span.addEventListener('dragstart', e => {
+            span.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', word);
+        });
+        span.addEventListener('dragend', e => {
+            span.classList.remove('dragging');
+        });
+        choicesRow.appendChild(span);
+    });
+    container.appendChild(choicesRow);
+    // Drag/drop logic
+    const gaps = container.querySelectorAll('.drag-gap');
+    gaps.forEach(gap => {
+        gap.addEventListener('dragover', e => {
+            e.preventDefault();
+            gap.classList.add('filled');
+        });
+        gap.addEventListener('dragleave', e => {
+            gap.classList.remove('filled');
+        });
+        gap.addEventListener('drop', e => {
+            e.preventDefault();
+            gap.classList.remove('filled');
+            const word = e.dataTransfer.getData('text/plain');
+            gap.textContent = word;
+            gap.setAttribute('data-word', word);
+        });
+    });
+    // Controls
+    const controls = document.createElement('div');
+    controls.className = 'drag-controls';
+    const checkBtn = document.createElement('button');
+    checkBtn.textContent = 'Vérifier';
+    checkBtn.onclick = () => checkAnswers(chunk);
+    controls.appendChild(checkBtn);
+    if (end < dragSentences.length) {
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Suivant';
+        nextBtn.disabled = true;
+        nextBtn.id = 'next-chunk-btn';
+        controls.appendChild(nextBtn);
+    }
+    container.appendChild(controls);
+    // Feedback
+    const feedback = document.createElement('div');
+    feedback.className = 'drag-feedback';
+    feedback.id = 'drag-feedback';
+    container.appendChild(feedback);
+}
+
+function checkAnswers(chunk) {
+    const container = document.getElementById('drag-app-container');
+    const gaps = container.querySelectorAll('.drag-gap');
+    let allCorrect = true;
+    gaps.forEach((gap, idx) => {
+        const userWord = gap.getAttribute('data-word');
+        const correctWord = chunk[idx].w;
+        if (userWord === correctWord) {
+            gap.classList.add('correct');
+            gap.classList.remove('incorrect');
+        } else {
+            gap.classList.add('incorrect');
+            gap.classList.remove('correct');
+            allCorrect = false;
+        }
+    });
+    const feedback = document.getElementById('drag-feedback');
+    if (allCorrect) {
+        feedback.textContent = 'Bravo ! Toutes les réponses sont correctes.';
+        // Fill progress bar to next chunk
+        const progressInner = document.getElementById('progress-inner');
+        const nextPercent = Math.floor(((currentChunk + 1) * chunkSize / dragSentences.length) * 100);
+        progressInner.style.width = `${nextPercent}%`;
+        // Update label
+        const progressLabel = progressInner.parentElement.previousElementSibling;
+        progressLabel.textContent = `Progression : ${Math.min((currentChunk + 1) * chunkSize, dragSentences.length)} / ${dragSentences.length}`;
+        // Enable next button if exists
+        const nextBtn = document.getElementById('next-chunk-btn');
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.onclick = () => {
+                currentChunk++;
+                renderChunk();
+            };
+        }
+    } else {
+        feedback.textContent = 'Corrige les réponses incorrectes puis réessaie.';
+    }
+}
+
+// Initialize
+renderChunk();
+    </script>
+</body>
+</html>

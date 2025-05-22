@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6 – Drag & Drop Verb Forms</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/verb_trainer_style.css">
+    <style>
+        .drag-sentence { margin: 18px 0; font-size: 1.2em; }
+        .drag-gap {
+            display: inline-block;
+            min-width: 90px;
+            min-height: 32px;
+            border: 2px dashed #50a3a2;
+            border-radius: 8px;
+            background: #fafdff;
+            vertical-align: middle;
+            margin: 0 6px;
+            padding: 2px 8px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .drag-verb-choice {
+            display: inline-block;
+            background: #50a3a2;
+            color: #fff;
+            border-radius: 12px;
+            padding: 6px 18px;
+            margin: 0 8px 8px 0;
+            font-size: 1.1em;
+            cursor: grab;
+            user-select: none;
+        }
+        .drag-verb-choice.dragging { opacity: 0.5; }
+        .drag-gap.filled { background: #e0f7fa; }
+        .drag-gap.correct { background: #c8e6c9; border-color: #388e3c; }
+        .drag-gap.incorrect { background: #ffcdd2; border-color: #c62828; }
+        .drag-choices-row { margin: 18px 0 24px 0; }
+        .drag-controls { margin: 18px 0; text-align: center; }
+        .drag-feedback { font-weight: bold; margin: 12px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Unité 6 – Drag & Drop : Formes de verbes</h1>
+        <nav>
+            <ul>
+                <li><a href="../unit6.html">Retour à l'unité 6</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="drag-app-container"></div>
+    </main>
+    <script>
+const dragSentences = [
+    { s: "Les élèves ... le bus devant le collège.", a: "attendent" },
+    { s: "Est-ce que tu ... la musique que Léo écoute ?", a: "entends" },
+    { s: "Je ... toujours aux questions du professeur.", a: "réponds" },
+    { s: "Attention, tu vas ... tes clés si tu ne ranges pas ton sac !", a: "perdre" },
+    { s: "Nous ... du TGV à la gare de Limoges.", a: "descendons" },
+    { s: "Marie ... son ami devant la FNAC.", a: "attend" },
+    { s: "Vous n'... pas bien, la musique est trop forte !", a: "entendez" },
+    { s: "Le monsieur ne ... pas à la question de la dame.", a: "répond" },
+    { s: "Malabar ... souvent son jouet dans le parc.", a: "perd" },
+    { s: "Les enfants ... l'escalier pour aller dans la cour.", a: "descendent" },
+    { s: "J'... le train pour Paris avec impatience.", a: "attends" },
+    { s: "On ... les oiseaux chanter le matin.", a: "entend" },
+    { s: "S'il te plaît, ... à ma question !", a: "réponds" },
+    { s: "Si tu ne fais pas attention, tu vas ... la partie de cartes.", a: "perdre" },
+    { s: "Elle ... de la voiture et entre dans la maison.", a: "descend" },
+    { s: "Les copains ... la fin du cours de maths.", a: "attendent" },
+    { s: "Tu ... le téléphone sonner ? C'est peut-être maman.", a: "entends" },
+    { s: "Nous ... à la lettre de nos grands-parents.", a: "répondons" },
+    { s: "J'ai peur de ... mon chemin dans cette grande ville.", a: "perdre" },
+    { s: "Quand le bus arrive, tout le monde ... vite.", a: "descend" },
+    { s: "Pourquoi est-ce que vous ... ici sous la pluie ?", a: "attendez" },
+    { s: "J'... un bruit bizarre dans la cuisine, qu'est-ce que c'est ?", a: "entends" },
+    { s: "Les élèves intelligents ... correctement aux questions.", a: "répondent" },
+    { s: "Si on ne joue pas bien, notre équipe va ... le match de foot.", a: "perdre" },
+    { s: "Pour aller au CDI, tu ... au premier étage.", a: "descends" },
+    { s: "Le chien ... son maître devant la boulangerie.", a: "attend" },
+    { s: "Nous ... la sonnerie de la récréation avec joie.", a: "entendons" },
+    { s: "Tu ... toujours 'oui' quand ta mère te demande quelque chose ?", a: "réponds" },
+    { s: "Il ne faut pas ... espoir, même si c'est difficile.", a: "perdre" },
+    { s: "L'ascenseur est en panne, alors nous ... par les escaliers.", a: "descendons" },
+    { s: "Elles ... le début du film avec beaucoup d'enthousiasme.", a: "attendent" },
+    { s: "Vous ... ce que dit le guide dans le musée ?", a: "entendez" },
+    { s: "Je ne sais pas quoi ... , c'est une question difficile.", a: "répondre" },
+    { s: "Mon petit frère ... toujours ses crayons de couleur.", a: "perd" },
+    { s: "Le chat ... doucement du toit.", a: "descend" },
+    { s: "Qui ... une réponse à cette énigme ?", a: "attend" },
+    { s: "Chut ! J'essaie d'... les informations à la radio.", a: "entendre" },
+    { s: "Le service client ... aux courriels en 24 heures.", a: "répond" },
+    { s: "Ne ... pas patience, le concert va bientôt commencer.", a: "perds" },
+    { s: "Les touristes ... du bateau-mouche pour visiter Notre-Dame.", a: "descendent" }
+];
+
+const chunkSize = 5;
+let currentChunk = 0;
+let userAnswers = [];
+
+function shuffle(array) {
+    let arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function renderChunk() {
+    const container = document.getElementById('drag-app-container');
+    container.innerHTML = '';
+    const start = currentChunk * chunkSize;
+    const end = Math.min(start + chunkSize, dragSentences.length);
+    const chunk = dragSentences.slice(start, end);
+    // Prepare verb choices
+    const choices = shuffle(chunk.map(s => s.a));
+    // Sentences
+    chunk.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'drag-sentence';
+        div.innerHTML = item.s.replace('...', `<span class="drag-gap" data-idx="${idx}"></span>`);
+        container.appendChild(div);
+    });
+    // Choices row
+    const choicesRow = document.createElement('div');
+    choicesRow.className = 'drag-choices-row';
+    choices.forEach((verb, i) => {
+        const span = document.createElement('span');
+        span.className = 'drag-verb-choice';
+        span.textContent = verb;
+        span.setAttribute('draggable', 'true');
+        span.id = `drag-choice-${i}`;
+        span.addEventListener('dragstart', e => {
+            span.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', verb);
+        });
+        span.addEventListener('dragend', e => {
+            span.classList.remove('dragging');
+        });
+        choicesRow.appendChild(span);
+    });
+    container.appendChild(choicesRow);
+    // Drag/drop logic
+    const gaps = container.querySelectorAll('.drag-gap');
+    gaps.forEach(gap => {
+        gap.addEventListener('dragover', e => {
+            e.preventDefault();
+            gap.classList.add('filled');
+        });
+        gap.addEventListener('dragleave', e => {
+            gap.classList.remove('filled');
+        });
+        gap.addEventListener('drop', e => {
+            e.preventDefault();
+            gap.classList.remove('filled');
+            const verb = e.dataTransfer.getData('text/plain');
+            gap.textContent = verb;
+            gap.setAttribute('data-verb', verb);
+        });
+    });
+    // Controls
+    const controls = document.createElement('div');
+    controls.className = 'drag-controls';
+    const checkBtn = document.createElement('button');
+    checkBtn.textContent = 'Vérifier';
+    checkBtn.onclick = () => checkAnswers(chunk);
+    controls.appendChild(checkBtn);
+    if (end < dragSentences.length) {
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Suivant';
+        nextBtn.disabled = true;
+        nextBtn.id = 'next-chunk-btn';
+        controls.appendChild(nextBtn);
+    }
+    container.appendChild(controls);
+    // Feedback
+    const feedback = document.createElement('div');
+    feedback.className = 'drag-feedback';
+    feedback.id = 'drag-feedback';
+    container.appendChild(feedback);
+}
+
+function checkAnswers(chunk) {
+    const container = document.getElementById('drag-app-container');
+    const gaps = container.querySelectorAll('.drag-gap');
+    let allCorrect = true;
+    gaps.forEach((gap, idx) => {
+        const userVerb = gap.getAttribute('data-verb');
+        const correctVerb = chunk[idx].a;
+        if (userVerb === correctVerb) {
+            gap.classList.add('correct');
+            gap.classList.remove('incorrect');
+        } else {
+            gap.classList.add('incorrect');
+            gap.classList.remove('correct');
+            allCorrect = false;
+        }
+    });
+    const feedback = document.getElementById('drag-feedback');
+    if (allCorrect) {
+        feedback.textContent = 'Bravo ! Toutes les réponses sont correctes.';
+        // Enable next button if exists
+        const nextBtn = document.getElementById('next-chunk-btn');
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.onclick = () => {
+                currentChunk++;
+                renderChunk();
+            };
+        }
+    } else {
+        feedback.textContent = 'Corrige les réponses incorrectes puis réessaie.';
+    }
+}
+
+// Initialize
+renderChunk();
+    </script>
+</body>
+</html>

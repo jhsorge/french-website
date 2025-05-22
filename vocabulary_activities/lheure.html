@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'heure - Apprendre à lire l'heure</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .digital-clock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .digital-clock-box {
+            background: #fafdff;
+            border: 4px solid #50a3a2;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(80,163,162,0.10);
+            padding: 38px 48px 32px 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .digital-time-inputs {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            font-size: 3.5em;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 24px;
+        }
+        .digital-arrow-btn {
+            background: #50a3a2;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            width: 54px;
+            height: 54px;
+            font-size: 1.3em; /* smaller arrow */
+            cursor: pointer;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .digital-arrow-btn + .digital-input {
+            margin-top: 6px;
+        }
+        .digital-input {
+            width: 2.8em;
+            height: 2.2em;
+            text-align: center;
+            font-size: 1.5em;
+            border: 3px solid #50a3a2;
+            border-radius: 8px;
+            padding: 8px 0;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        .digital-colon {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .clock-target {
+            font-size: 1.3em;
+            color: #50a3a2;
+            margin-bottom: 16px;
+        }
+        .clock-success {
+            color: #388e3c;
+            font-weight: bold;
+        }
+        .clock-fail {
+            color: #c62828;
+            font-weight: bold;
+        }
+        .clock-sentence {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3b8686;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .clock-progress-bar {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto 24px auto;
+            background: #e0f7fa;
+            border-radius: 12px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(80,163,162,0.08);
+            overflow: hidden;
+        }
+        .clock-progress-inner {
+            height: 100%;
+            background: linear-gradient(90deg, #50a3a2 60%, #3b8686 100%);
+            border-radius: 12px 0 0 12px;
+            transition: width 0.4s cubic-bezier(.4,1.4,.6,1);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding-right: 16px;
+        }
+        .clock-progress-label {
+            display: block;
+            position: static;
+            left: auto;
+            top: auto;
+            transform: none;
+            margin-bottom: 4px;
+            color: #3b8686;
+            font-weight: bold;
+            font-size: 1.1em;
+            pointer-events: none;
+            text-align: center;
+        }
+        .clock-progress-bar-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto 24px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lire l'heure</h1>
+        <nav>
+            <ul>
+                <li><a href="../unit4.html">Retour à l'unité 4</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Lire l'heure (horloge digitale 24h)</h2>
+        <div class="digital-clock-container">
+            <div class="clock-progress-bar-wrap">
+                <div class="clock-progress-label" id="clock-progress-label"></div>
+                <div class="clock-progress-bar">
+                    <div class="clock-progress-inner" id="clock-progress-inner" style="width:0%"></div>
+                </div>
+            </div>
+            <div class="clock-sentence" id="clock-sentence"></div>
+            <div class="clock-target" id="clock-target" style="display:none"></div>
+            <div class="digital-clock-box">
+                <div class="digital-time-inputs">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <button class="digital-arrow-btn" id="hour-up">▲</button>
+                        <input class="digital-input" id="hour-input" maxlength="2" type="text" value="12" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+                        <button class="digital-arrow-btn" id="hour-down">▼</button>
+                    </div>
+                    <span class="digital-colon">:</span>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <button class="digital-arrow-btn" id="minute-up">▲</button>
+                        <input class="digital-input" id="minute-input" maxlength="2" type="text" value="00" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+                        <button class="digital-arrow-btn" id="minute-down">▼</button>
+                    </div>
+                </div>
+            </div>
+            <div class="clock-controls">
+                <button id="check-time-btn" class="clock-check">Vérifier</button>
+                <div id="clock-feedback"></div>
+            </div>
+        </div>
+    </main>
+    <script>
+    // --- Digital Clock Learning App ---
+    const hourInput = document.getElementById('hour-input');
+    const minuteInput = document.getElementById('minute-input');
+    const hourUp = document.getElementById('hour-up');
+    const hourDown = document.getElementById('hour-down');
+    const minuteUp = document.getElementById('minute-up');
+    const minuteDown = document.getElementById('minute-down');
+    const feedback = document.getElementById('clock-feedback');
+    const checkBtn = document.getElementById('check-time-btn');
+    const sentenceDisplay = document.getElementById('clock-sentence');
+    const progressInner = document.getElementById('clock-progress-inner');
+    const progressLabel = document.getElementById('clock-progress-label');
+
+    // Sentences and answers
+    const clockQuestions = [
+        // Level 1
+        { sentence: "Il est sept heure.", answers: ["07:00"] },
+        { sentence: "Il est onze heure.", answers: ["11:00"] },
+        { sentence: "Il est midi.", answers: ["12:00"] },
+        { sentence: "Il est minuit.", answers: ["00:00", "24:00"] },
+    ];
+    const clockQuestions2 = [
+        { sentence: "Il est sept heures et cinq.", answers: ["07:05"] },
+        { sentence: "Il est trois heures et demie.", answers: ["03:30"] },
+        { sentence: "Il est neuf heures moins le quart.", answers: ["08:45"] },
+        { sentence: "Il est huit heures et vingt-cinq.", answers: ["08:25"] },
+        { sentence: "Il est une heure et quart.", answers: ["01:15"] },
+        { sentence: "Il est deux heures moins vingt.", answers: ["01:40"] },
+    ];
+    let currentLevel = 1;
+    let currentIdx = 0;
+
+    function pad2(n) { return String(n).padStart(2, '0'); }
+
+    function showCurrentQuestion() {
+        const q = (currentLevel === 1 ? clockQuestions : clockQuestions2)[currentIdx];
+        sentenceDisplay.textContent = q.sentence;
+        feedback.textContent = '';
+        feedback.className = '';
+        hourInput.value = pad2(0);
+        minuteInput.value = pad2(0);
+        updateProgressBar();
+    }
+
+    function checkTime() {
+        let userHour = parseInt(hourInput.value, 10);
+        let userMinute = parseInt(minuteInput.value, 10);
+        if (isNaN(userHour) || isNaN(userMinute)) {
+            feedback.textContent = 'Veuillez entrer une heure valide.';
+            feedback.className = 'clock-fail';
+            return;
+        }
+        const userStr = pad2(userHour) + ':' + pad2(userMinute);
+        const questions = currentLevel === 1 ? clockQuestions : clockQuestions2;
+        const q = questions[currentIdx];
+        if (q.answers.includes(userStr)) {
+            feedback.textContent = 'Bravo ! C’est correct.';
+            feedback.className = 'clock-success';
+            setTimeout(() => {
+                currentIdx++;
+                if (currentIdx < questions.length) {
+                    updateProgressBar(); // Progress after correct answer
+                    showCurrentQuestion();
+                } else if (currentLevel === 1) {
+                    updateProgressBar(true); // Fill bar for level 1
+                    currentLevel = 2;
+                    currentIdx = 0;
+                    sentenceDisplay.textContent = 'Niveau 2 !';
+                    setTimeout(() => showCurrentQuestion(), 1200);
+                } else {
+                    updateProgressBar(true); // Fill bar for level 2
+                    sentenceDisplay.textContent = 'Félicitations ! Vous avez terminé tous les niveaux.';
+                    feedback.textContent = '';
+                    hourInput.disabled = true;
+                    minuteInput.disabled = true;
+                    hourUp.disabled = true;
+                    hourDown.disabled = true;
+                    minuteUp.disabled = true;
+                    minuteDown.disabled = true;
+                    checkBtn.disabled = true;
+                }
+            }, 1200);
+        } else {
+            feedback.textContent = `Ce n’est pas correct. Essaie encore !`;
+            feedback.className = 'clock-fail';
+        }
+    }
+    function scrollHour(delta) {
+        let h = parseInt(hourInput.value, 10);
+        if (isNaN(h)) h = 0;
+        h = ((h + delta + 24) % 24);
+        hourInput.value = pad2(h);
+    }
+    function scrollMinute(delta) {
+        let m = parseInt(minuteInput.value, 10);
+        if (isNaN(m)) m = 0;
+        m = ((m + delta + 60) % 60);
+        minuteInput.value = pad2(m);
+    }
+    function updateProgressBar(levelComplete = false) {
+        let total, current, label;
+        if (currentLevel === 1) {
+            total = clockQuestions.length;
+            current = currentIdx + 1;
+            label = `Niveau 1 : ${current} / ${total}`;
+        } else {
+            total = clockQuestions2.length;
+            current = currentIdx + 1;
+            label = `Niveau 2 : ${current} / ${total}`;
+        }
+        progressLabel.textContent = label;
+        let percent = 0;
+        if (levelComplete) {
+            percent = 100;
+            progressInner.textContent = `${total} / ${total}`;
+        } else {
+            percent = Math.floor((currentIdx / total) * 100);
+            progressInner.textContent = `${currentIdx} / ${total}`;
+        }
+        progressInner.style.width = percent + '%';
+    }
+    hourUp.addEventListener('click', () => scrollHour(1));
+    hourDown.addEventListener('click', () => scrollHour(-1));
+    minuteUp.addEventListener('click', () => scrollMinute(1));
+    minuteDown.addEventListener('click', () => scrollMinute(-1));
+    hourInput.addEventListener('input', () => {
+        let v = hourInput.value.replace(/\D/g, '');
+        if (v.length > 2) v = v.slice(0,2);
+        let n = parseInt(v, 10);
+        if (isNaN(n) || n < 0 || n > 23) n = 0;
+        hourInput.value = pad2(n);
+    });
+    minuteInput.addEventListener('input', () => {
+        let v = minuteInput.value.replace(/\D/g, '');
+        if (v.length > 2) v = v.slice(0,2);
+        let n = parseInt(v, 10);
+        if (isNaN(n) || n < 0 || n > 59) n = 0;
+        minuteInput.value = pad2(n);
+    });
+    checkBtn.addEventListener('click', checkTime);
+    // Initialize
+    showCurrentQuestion();
+    </script>
+</body>
+</html>

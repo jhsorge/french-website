@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6 – Drag & Drop Verbes + Prépositions</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/fill_verbs_style.css">
+    <style>
+        .drag-sentence { margin: 18px 0; font-size: 1.2em; }
+        .drag-gap {
+            display: inline-block;
+            min-width: 80px;
+            min-height: 32px;
+            border: 2px dashed #50a3a2;
+            border-radius: 8px;
+            background: #fafdff;
+            vertical-align: middle;
+            margin: 0 6px;
+            padding: 2px 8px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .drag-verb-choice, .drag-prep-choice {
+            display: inline-block;
+            background: #50a3a2;
+            color: #fff;
+            border-radius: 12px;
+            padding: 6px 18px;
+            margin: 0 8px 8px 0;
+            font-size: 1.1em;
+            cursor: grab;
+            user-select: none;
+        }
+        .drag-verb-choice.dragging, .drag-prep-choice.dragging { opacity: 0.5; }
+        .drag-gap.filled { background: #e0f7fa; }
+        .drag-gap.correct { background: #c8e6c9; border-color: #388e3c; }
+        .drag-gap.incorrect { background: #ffcdd2; border-color: #c62828; }
+        .drag-choices-row { margin: 18px 0 24px 0; }
+        .drag-controls { margin: 18px 0; text-align: center; }
+        .drag-feedback { font-weight: bold; margin: 12px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Unité 6 – Drag & Drop : Verbes + Prépositions</h1>
+        <nav>
+            <ul>
+                <li><a href="../unit6.html">Retour à l'unité 6</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="drag-app-container"></div>
+    </main>
+    <script>
+const dragSentences = [
+    { s: "Je ... ... ma grand-mère à faire les courses.", v: "aide", p: "-" },
+    { s: "Les élèves ... ... leurs sacs à dos.", v: "portent", p: "-" },
+    { s: "Nous ... ... un film intéressant ce soir.", v: "regardons", p: "-" },
+    { s: "Léo ... son nouveau vélo ... ses amis.", v: "montre", p: "à" },
+    { s: "Tu ... un cadeau ... professeur pour son anniversaire ?", v: "donnes", p: "au" },
+    { s: "Marie ... ... dame de la S.P.A.", v: "parle", p: "à la" },
+    { s: "Les enfants ... une histoire ... leur père.", v: "demandent", p: "à" },
+    { s: "Le professeur ... 'Bonjour' ... élèves.", v: "dit", p: "aux" },
+    { s: "Vous ... ... le petit garçon à trouver son chemin ?", v: "aidez", p: "-" },
+    { s: "Mon frère ... ... un T-shirt bleu aujourd'hui.", v: "porte", p: "-" },
+    { s: "Je ... ... les affiches dans la rue.", v: "regarde", p: "-" },
+    { s: "La maman ... les photos de vacances ... oncle de Paul.", v: "montre", p: "à l'" },
+    { s: "Nous ... des croquettes ... chat de Malou.", v: "donnons", p: "au" },
+    { s: "Est-ce que tu ... souvent ... tes cousins ?", v: "parles", p: "à" },
+    { s: "L'élève ... un stylo ... son copain.", v: "demande", p: "à" },
+    { s: "Mes parents ... toujours la vérité ... moi.", v: "disent", p: "à" },
+    { s: "Les filles ... ... leur mère à ranger la chambre.", v: "aident", p: "-" },
+    { s: "Le facteur ... ... un gros carton.", v: "porte", p: "-" },
+    { s: "Les touristes ... ... la tour Eiffel.", v: "regardent", p: "-" },
+    { s: "Je ... ma nouvelle BD ... ma meilleure amie.", v: "montre", p: "à" },
+    { s: "Le grand-père ... des bonbons ... enfants.", v: "donne", p: "aux" },
+    { s: "Vous ... français ... vendeur du magasin ?", v: "parlez", p: "au" },
+    { s: "Nous ... l'heure ... monsieur dans la rue.", v: "demandons", p: "à un" },
+    { s: "Qu'est-ce que tu ... ... ton frère quand il est triste ?", v: "dis", p: "à" },
+    { s: "Moustique ... ... Léo à chercher son ballon.", v: "aide", p: "-" },
+    { s: "Tu ... ... une casquette rouge ?", v: "portes", p: "-" },
+    { s: "Les amis ... ... un match de foot à la télévision.", v: "regardent", p: "-" },
+    { s: "Le guide ... le chemin ... touristes.", v: "montre", p: "aux" },
+    { s: "Marie ... son numéro de téléphone ... son nouveau copain.", v: "donne", p: "à" },
+    { s: "Le directeur ... ... professeurs dans la salle des profs.", v: "parle", p: "aux" },
+    { s: "Je ... des informations ... office de tourisme.", v: "demande", p: "à l'" },
+    { s: "Les enfants ... 'merci' ... dame de la cantine.", v: "disent", p: "à la" },
+    { s: "Nous ... ... les musiciens à porter leurs instruments.", v: "aidons", p: "-" },
+    { s: "Elle ... ... des lunettes pour lire.", v: "porte", p: "-" },
+    { s: "On ... ... les animaux au parc.", v: "regarde", p: "-" },
+    { s: "Tu ... tes devoirs ... professeur ?", v: "montres", p: "au" },
+    { s: "Les parents ... de l'argent de poche ... leurs enfants.", v: "donnent", p: "à" },
+    { s: "Je ... de mes vacances ... ma grand-mère.", v: "parle", p: "à" },
+    { s: "Vous ... de l'aide ... votre voisin ?", v: "demandez", p: "à" },
+    { s: "Le chanteur ... quelques mots ... public avant le concert.", v: "dit", p: "au" },
+    { s: "Nicolas ... ... des questions ... professeur.", v: "pose", p: "au" },
+    { s: "Les élèves ... leurs cahiers ... leurs amis.", v: "montrent", p: "à" },
+    { s: "Léa ... souvent ... sa mère.", v: "téléphone", p: "à" },
+    { s: "Le professeur ... des histoires ... élèves.", v: "raconte", p: "aux" },
+    { s: "Les parents ... des photos ... leurs amis.", v: "donnent", p: "à" },
+    { s: "Nicolas ... des photos ... ses copains.", v: "montre", p: "à" },
+    { s: "Les élèves ... des questions ... guide.", v: "posent", p: "au" },
+    { s: "Léa ... des histoires ... son petit frère.", v: "raconte", p: "à" },
+    { s: "Le professeur ... les cahiers ... élèves.", v: "donne", p: "aux" },
+    { s: "Les parents ... ... professeur de Nicolas.", v: "téléphonent", p: "au" },
+    { s: "Nicolas ... un cadeau ... sa mère.", v: "donne", p: "à" },
+    { s: "Les élèves ... des blagues ... leurs amis.", v: "racontent", p: "à" },
+    { s: "Léa ... une question ... vendeur.", v: "pose", p: "au" },
+    { s: "Le professeur ... des images ... élèves.", v: "montre", p: "aux" },
+    { s: "Les parents ... leurs vacances ... leurs copains.", v: "racontent", p: "à" },
+    { s: "Nicolas ... ... ses grands-parents.", v: "téléphone", p: "à" },
+    { s: "Les élèves ... des fleurs ... professeur.", v: "donnent", p: "au" },
+    { s: "Léa ... son dessin ... sa mère.", v: "montre", p: "à" },
+    { s: "Le professeur ... des questions difficiles ... élèves.", v: "pose", p: "aux" },
+    { s: "Les parents ... des photos de Nicolas ... leurs amis.", v: "montrent", p: "à" }
+];
+
+const chunkSize = 5;
+let currentChunk = 0;
+
+function shuffle(array) {
+    let arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function renderChunk() {
+    const container = document.getElementById('drag-app-container');
+    container.innerHTML = '';
+    const start = currentChunk * chunkSize;
+    const end = Math.min(start + chunkSize, dragSentences.length);
+    const chunk = dragSentences.slice(start, end);
+    // Progress bar (persistent)
+    const progressBarWrap = document.createElement('div');
+    progressBarWrap.style.width = '100%';
+    progressBarWrap.style.maxWidth = '420px';
+    progressBarWrap.style.margin = '0 auto 18px auto';
+    const percent = Math.floor((currentChunk * chunkSize / dragSentences.length) * 100);
+    progressBarWrap.innerHTML = `
+        <div style="margin-bottom:4px;color:#3b8686;font-weight:bold;text-align:center;">Progression : ${Math.min(currentChunk * chunkSize, dragSentences.length)} / ${dragSentences.length}</div>
+        <div style="background:#e0f7fa;border-radius:12px;height:22px;overflow:hidden;">
+            <div id="progress-inner" style="height:100%;background:linear-gradient(90deg,#50a3a2 60%,#3b8686 100%);border-radius:12px 0 0 12px;width:${percent}%;transition:width 0.4s;"></div>
+        </div>
+    `;
+    container.appendChild(progressBarWrap);
+    // Prepare verb and prep choices
+    const verbChoices = shuffle(chunk.map(s => s.v));
+    const prepChoices = shuffle(chunk.map(s => s.p));
+    // Sentences
+    chunk.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'drag-sentence';
+        // Replace first ... with verb gap, second ... with prep gap
+        let html = item.s;
+        html = html.replace('...', `<span class=\"drag-gap verb-gap\" data-type=\"verb\" data-idx=\"${idx}\"></span>`);
+        html = html.replace('...', `<span class=\"drag-gap prep-gap\" data-type=\"prep\" data-idx=\"${idx}\"></span>`);
+        div.innerHTML = html;
+        container.appendChild(div);
+    });
+    // Choices row
+    const choicesRow = document.createElement('div');
+    choicesRow.className = 'drag-choices-row';
+    verbChoices.forEach((verb, i) => {
+        const span = document.createElement('span');
+        span.className = 'drag-verb-choice';
+        span.textContent = verb;
+        span.setAttribute('draggable', 'true');
+        span.id = `drag-verb-choice-${i}`;
+        span.addEventListener('dragstart', e => {
+            span.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', 'verb:' + verb);
+        });
+        span.addEventListener('dragend', e => {
+            span.classList.remove('dragging');
+        });
+        choicesRow.appendChild(span);
+    });
+    prepChoices.forEach((prep, i) => {
+        const span = document.createElement('span');
+        span.className = 'drag-prep-choice';
+        span.textContent = prep;
+        span.setAttribute('draggable', 'true');
+        span.id = `drag-prep-choice-${i}`;
+        span.addEventListener('dragstart', e => {
+            span.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', 'prep:' + prep);
+        });
+        span.addEventListener('dragend', e => {
+            span.classList.remove('dragging');
+        });
+        choicesRow.appendChild(span);
+    });
+    container.appendChild(choicesRow);
+    // Drag/drop logic
+    const gaps = container.querySelectorAll('.drag-gap');
+    gaps.forEach(gap => {
+        gap.addEventListener('dragover', e => {
+            e.preventDefault();
+            gap.classList.add('filled');
+        });
+        gap.addEventListener('dragleave', e => {
+            gap.classList.remove('filled');
+        });
+        gap.addEventListener('drop', e => {
+            e.preventDefault();
+            gap.classList.remove('filled');
+            const data = e.dataTransfer.getData('text/plain');
+            if (gap.classList.contains('verb-gap') && data.startsWith('verb:')) {
+                const verb = data.slice(5);
+                gap.textContent = verb;
+                gap.setAttribute('data-verb', verb);
+            } else if (gap.classList.contains('prep-gap') && data.startsWith('prep:')) {
+                const prep = data.slice(5);
+                gap.textContent = prep;
+                gap.setAttribute('data-prep', prep);
+            }
+        });
+    });
+    // Controls
+    const controls = document.createElement('div');
+    controls.className = 'drag-controls';
+    const checkBtn = document.createElement('button');
+    checkBtn.textContent = 'Vérifier';
+    checkBtn.onclick = () => checkAnswers(chunk);
+    controls.appendChild(checkBtn);
+    if (end < dragSentences.length) {
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Suivant';
+        nextBtn.disabled = true;
+        nextBtn.id = 'next-chunk-btn';
+        controls.appendChild(nextBtn);
+    }
+    container.appendChild(controls);
+    // Feedback
+    const feedback = document.createElement('div');
+    feedback.className = 'drag-feedback';
+    feedback.id = 'drag-feedback';
+    container.appendChild(feedback);
+}
+
+function checkAnswers(chunk) {
+    const container = document.getElementById('drag-app-container');
+    const verbGaps = container.querySelectorAll('.verb-gap');
+    const prepGaps = container.querySelectorAll('.prep-gap');
+    let allCorrect = true;
+    verbGaps.forEach((gap, idx) => {
+        const userVerb = gap.getAttribute('data-verb');
+        const correctVerb = chunk[idx].v;
+        if (userVerb === correctVerb) {
+            gap.classList.add('correct');
+            gap.classList.remove('incorrect');
+        } else {
+            gap.classList.add('incorrect');
+            gap.classList.remove('correct');
+            allCorrect = false;
+        }
+    });
+    prepGaps.forEach((gap, idx) => {
+        const userPrep = gap.getAttribute('data-prep');
+        const correctPrep = chunk[idx].p;
+        if (userPrep === correctPrep) {
+            gap.classList.add('correct');
+            gap.classList.remove('incorrect');
+        } else {
+            gap.classList.add('incorrect');
+            gap.classList.remove('correct');
+            allCorrect = false;
+        }
+    });
+    const feedback = document.getElementById('drag-feedback');
+    if (allCorrect) {
+        feedback.textContent = 'Bravo ! Toutes les réponses sont correctes.';
+        // Fill progress bar to next chunk
+        const progressInner = document.getElementById('progress-inner');
+        const nextPercent = Math.floor(((currentChunk + 1) * chunkSize / dragSentences.length) * 100);
+        progressInner.style.width = `${nextPercent}%`;
+        // Update label
+        const progressLabel = progressInner.parentElement.previousElementSibling;
+        progressLabel.textContent = `Progression : ${Math.min((currentChunk + 1) * chunkSize, dragSentences.length)} / ${dragSentences.length}`;
+        // Enable next button if exists
+        const nextBtn = document.getElementById('next-chunk-btn');
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.onclick = () => {
+                currentChunk++;
+                renderChunk();
+            };
+        }
+    } else {
+        feedback.textContent = 'Corrige les réponses incorrectes puis réessaie.';
+    }
+}
+
+// Initialize
+renderChunk();
+    </script>
+</body>
+</html>

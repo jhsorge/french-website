@@ -1,106 +1,74 @@
-un magasin
-un magasin
-un journal/des journaux
-une BD
-une affiche
-une affiche
-Qu’est-ce que c’est?
-à (Paris)
-à (Paris)
-une maison
-une maison de la presse
-que
-Que fait Léo?
-regarder qc
-regarder qc
-parler
-avec
-chercher qn/qc
-arriver
-en français
-un stylo
-un stylo
-une gomme
-un livre
-un cahier
-un crayon
-un truc (fam.)
-un truc (fam.)
-une trousse
-une feuille
-un cartable
-un classeur
-un sac à dos
-français/française
-écouter qn/qc
-écouter qn/qc
-trouver qn/qc
-travailler
-porter qc
-dans
-une rue
-dans la rue
-entrer
-entrer
-euh …
-là
-là
-Chut!
-pour
-une école
-en vacances (f. pl.)
-Tiens!
-Tiens!
-une grand-mère
-un carton
-un ami/une amie
-Zut! (fam.)
-Zut! (fam.)
-une catastrophe
-il dit/elle dit
-être
-devant
-habiter
-la rue Nollet
-où
-où
-la rue Truffaut
-un t-shirt
-le rugby
-le judo
-Qu’est-ce que …?
-le sport
-la musique
-un frère
-une sœur
-sympa
-détester qn/qc
-ça
-d’accord
-d’accord
-alors
-alors
-alors
-Ouf!
-aimer qn/qc
-aimer qn/qc
-le rock
-le foot(ball)
-un vélo
-la techno
-le rap
-la gymnastique
-la gymnastique
-une chanson
-un saxophone
-un piano
-un piano
-un dessin
-le basket(ball)
-l’athlétisme )m.)
-le roller
-le roller
-un cinéma
-le VTT
-la lecture
-
+un magasin, ein Geschäft; ein Laden
+un journal, eine Zeitung
+une BD, ein Comic
+une affiche, ein Plakat; ein Poster
+Qu’est-ce que c’est?, Was ist das?
+à (Paris), in (Paris); nach (Paris)
+une maison, ein Haus
+une maison de la presse, ein Zeitschriften- und Schreibwarengeschäft
+Que fait Léo?, Was macht Léo?
+regarder qc, etwas ansehen; etwas betrachten
+parler, sprechen
+avec, mit
+arriver, kommen; ankommen
+chercher qn/qc, jemanden/etwas suchen
+français, französisch
+en français, auf Französisch
+un sac à dos, ein Rucksack
+un livre, ein Buch
+un crayon, ein Bleistift
+un cahier, ein Heft
+un stylo, ein Füller; ein Kuli
+une gomme, ein Radiergummi
+un truc (fam.), ein Ding; eine Sache
+écouter qn/qc, jdm. zuhören; etwas anhören
+trouver qn/qc, jemanden/etwas finden
+porter qc, etwas tragen
+travailler, arbeiten
+dans, in
+une rue, eine Straße
+dans la rue, auf der Straße
+entrer, eintreten; hereinkommen
+euh …, äh …
+là, da; dort
+Chut!, Pst!
+pour, für
+une école, eine Schule
+en vacances, in den Ferien
+Tiens!, Sieh mal!; Schau mal!
+une grand-mère, eine Großmutter
+Latière, Familienname
+il dit/elle dit, er sagt/sie sagt
+un carton, ein Karton
+un ami/une amie, ein Freund/eine Freundin
+Malou, Name einer Katze
+Zut! (fam.), Mist!; Verdammt!
+une catastrophe, eine Katastrophe
+être, sein
+devant, vor (örtlich)
+habiter, wohnen
+rue Nollet, Name einer Straße in Paris
+où, wo; wohin
+rue Truffaut, Name einer Straße in Paris
+un t-shirt, ein T-Shirt
+aimer qn/qc, jemanden/etwas lieben; jemanden/etwas mögen
+le rugby, das Rugby (Ballspiel)
+le judo, das Judo
+Qu’est-ce que …?, Was …?
+le sport, der Sport
+la musique, die Musik
+un frère, ein Bruder
+une sœur, eine Schwester
+sympa/sympa, nett
+détester qn/qc, jemanden/etwas verabscheuen
+ça, das
+d’accord, einverstanden; o.k.
+alors, nun; jetzt; dann
+Ouf!, Uff!
+le rock, die Rockmusik
+le foot(ball), der Fußball (Sportart)
+un vélo, ein Fahrrad
+la techno, Techno (Musikstil)
+le rap, Rap (Musikstil)
+la gymnastique, das Turnen; die Gymnastik
+classique, klassisch

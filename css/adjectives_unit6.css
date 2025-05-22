@@ -1,0 +1,12 @@
+/* Adjectives activity (unit 6) specific styles */
+.adj-sentence { margin: 22px 0; font-size: 1.15em; }
+.adj-gap { display: inline-block; min-width: 80px; min-height: 32px; margin: 0 4px; }
+select.adj-select { font-size: 1em; padding: 4px 10px; border-radius: 8px; border: 2px solid #50a3a2; background: #fafdff; }
+.adj-select.correct { background: #c8e6c9; border-color: #388e3c; }
+.adj-select.incorrect { background: #ffcdd2; border-color: #c62828; }
+.adj-controls { margin: 18px 0; text-align: center; }
+.adj-feedback { font-weight: bold; margin: 12px 0; }
+.progress-bar-wrap { width: 100%; max-width: 420px; margin: 0 auto 18px auto; }
+.progress-label { margin-bottom:4px;color:#3b8686;font-weight:bold;text-align:center; }
+.progress-bar-bg { background:#e0f7fa;border-radius:12px;height:22px;overflow:hidden; }
+.progress-bar-inner { height:100%;background:linear-gradient(90deg,#50a3a2 60%,#3b8686 100%);border-radius:12px 0 0 12px;width:0%;transition:width 0.4s; }

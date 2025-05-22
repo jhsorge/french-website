@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'anniversaire de Léo - Unité 6</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1 style="margin: 0;">L'anniversaire de Léo</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../unit1.html">Unité 1</a></li>
+                <li><a href="../unit2.html">Unité 2</a></li>
+                <li><a href="../unit3.html">Unité 3</a></li>
+                <li><a href="../unit4.html">Unité 4</a></li>
+                <li><a href="../unit5.html">Unité 5</a></li>
+                <li><a href="../unit6.html">Unité 6</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div style="display: flex; align-items: center; gap: 10px; background: #f3f3f3; border-radius: 6px; padding: 10px 15px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <button id="play-audio" style="font-size: 1.2em;">▶️</button>
+            <button id="pause-audio" style="font-size: 1.2em;">⏸️</button>
+            <span id="audio-current" style="min-width: 48px; text-align: right;">0:00</span>
+            <input type="range" id="audio-progress" value="0" min="0" max="100" step="1" style="flex:1; height: 4px;">
+            <span id="audio-duration" style="min-width: 48px; text-align: left;">0:00</span>
+            <audio id="story-audio" src="../audio/Unite6-Lanniversaire-de-Leo.wav"></audio>
+        </div>
+        <h2>L'anniversaire de Léo</h2>
+        <p>Aujourd'hui, c'est l'anniversaire de mon ami Léo. Il va avoir onze ans. Je suis très content! Ce matin, je vais préparer un grand gâteau au chocolat pour Léo. Ma mère va m'aider.
+            « Maman, tu peux m'aider, s'il te plaît? »</p>
+        <p>« Oui, bien sûr! » elle dit.</p>
+        <p>Nous allons aussi acheter un cadeau: un nouveau livre de BD. Léo adore la lecture.</p>
+        <p>Ce soir, ses copains et ses copines vont arriver chez Léo. Nous allons chanter « Joyeux Anniversaire ». Léo va souffler ses bougies. Ça va être une super fête!
+            « Léo, regarde ton cadeau! »</p>
+        <p>Il est très content. « Merci beaucoup! C'est génial! »</p>
+    </main>
+    <footer>
+        <p>&copy; 2025 Jennifer Matos</p>
+    </footer>
+    <script>
+        const audio = document.getElementById('story-audio');
+        const playBtn = document.getElementById('play-audio');
+        const pauseBtn = document.getElementById('pause-audio');
+        const progress = document.getElementById('audio-progress');
+        const current = document.getElementById('audio-current');
+        const duration = document.getElementById('audio-duration');
+
+        function formatTime(sec) {
+            if (isNaN(sec)) return '0:00';
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return `${m}:${s.toString().padStart(2, '0')}`;
+        }
+
+        audio.addEventListener('loadedmetadata', () => {
+            progress.max = Math.floor(audio.duration);
+            duration.textContent = formatTime(audio.duration);
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            progress.value = Math.floor(audio.currentTime);
+            current.textContent = formatTime(audio.currentTime);
+        });
+
+        progress.addEventListener('input', () => {
+            audio.currentTime = progress.value;
+        });
+
+        playBtn.onclick = () => audio.play();
+        pauseBtn.onclick = () => audio.pause();
+    </script>
+</body>
+</html>

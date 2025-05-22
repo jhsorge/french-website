@@ -1,150 +1,63 @@
-Bienvenue!
-Salut! (fam.)
-Salut! (fam.)
-Sarah
-et
-toi
-moi
-je m’appelle
-Ça va?
-oui
-merci
-A plus! (fam.)
-Bonjour!
-Au revoir!
-Salut! (fam.)
-un ami/une amie
-Bonjour, les amis!
-bien (adv.)
-une chanson
-Venez!
-à
-à
-un copain/une copine (fam.)
-à demain
-voilà
-voilà
-une bise (fam.)
-une bise (fam.)
-pour
-Quoi?
-Je pique une crise! (fam.)
-vite (adv.)
-Appelle la police!
-pas de dessert
-dans le désert
-aussi
-un bonbon
-C’est bon!
-un croissant
-un ballon
-un lapin
-un volcan
-la main
-un chien
-un crayon
-un éléphant
-un enfant
-une maison
-un gratin
-mon petit chat
-un
-deux
-trois
-quatre
-cinq
-six
-sept
-huit
-neuf
-dix
-onze
-douze
-un CDI
-un café
-une pharmacie
-un bureau de poste
-un restaurant
-un parc
-une boulangerie
-un cinéma
-une médiathèque
-dans la rue
-Bonjour!
-Paris
-et
-Viens!
-papa
-vite (adv.)
-Miaou!
-Ouah, ouah!
-S.P.A.
-Ça va?
-je m’appelle
-qui (Fragepronomen)
-Qui est-ce?
-Attention!
-Attention!
-non
-Pardon.
-Salut! (fam.)
-Salut! (fam.)
-Comment?
-ce/c’
-c’est
-moi
-je suis
-toi
-voilà
-voilà
-Tu t’appelles comment?
-bizarre
-bizarre
-un chat
-un chien
-mais
-oui
-bien (adv.)
-merci
-ici
-ici
-tu es
-de/d’
-de/d’
-super (inv.)
-super (inv.)
-un garçon
-une fille
-une fille
-il est
-elle est
-fantastique
-fantastique
-aussi
-un copain/une copine (fam.)
-une dame
-une dame
-un monsieur
-un monsieur
-Toulouse
-Strasbourg
-Nice
-Brest
-madame …
-Bof! (fam.)
-Bof! (fam.)
-Au revoir!
-un cochon d’Inde
-un poisson
-un cheval/des chevaux
-une souris
-un cochon
-un canari
-un perroquet
-un rat
-une tortue
-une perruche
-un serpent
-un hamster
-A tout à l’heure!
-
+Paris, Paris (Hauptstadt Frankreichs)
+Malabar, Name eines Hundes
+Viens!, Komm! (Aufforderung)
+papa, Papa
+vite (adv.), schnell (Adv.)
+Miaou!, Miau!
+Ouah, ouah!, Wau, wau!
+S.P.A. (la Société Protectrice des Animaux), die S.P.A. (französische Tierschutzgesellschaft)
+Qui est-ce?, Wer ist das?
+Attention!, Achtung!; Vorsicht!
+non, nein
+Pardon., Entschuldigung.
+Comment?, Wie? (Fragewort)
+Tu t’appelles comment?, Wie heißt du?
+c’est, das ist
+je suis, ich bin
+voilà, da ist; da sind
+ici, hier; hierher
+un chat, eine Katze
+un chien, ein Hund
+mais, aber
+tu es, du bist
+de/d’, aus; von
+aussi, auch
+super (inv.), super; toll
+un garçon, ein Junge; ein Bub
+une fille, ein Mädchen; eine Tochter
+il est, er ist
+elle est, sie ist
+un animal, ein Tier
+Ça ne va pas., Das geht nicht.
+une chanson, ein Lied
+fantastique, fantastisch; toll
+bizarre, komisch; merkwürdig
+un copain/une copine (fam.), ein Freund/eine Freundin
+une dame, eine Dame; eine Frau
+un monsieur, ein Herr; ein Mann
+Toulouse, Toulouse
+Strasbourg, Straßburg
+Brest, Brest
+Nice, Nizza
+madame …, Frau …
+mademoiselle ..., Fräulein …
+Bof! (fam.), Na ja; Ach. (ugs.)
+un, eins
+zéro, null
+deux, zwei
+trois, drei
+quatre, vier
+cinq, fünf
+six, sechs
+sept, sieben
+huit, acht
+neuf, neun
+dix, zehn
+onze, elf
+douze, zwölf
+un style, ein Stil
+le reggae, der Reggae
+l’électro, Electro
+une mélodie, eine Melodie
+un rythme, ein Rhythmus
+une voix, eine Stimme

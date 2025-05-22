@@ -1,115 +1,119 @@
-un anniversaire
-une idée
-une idée
-des
-un cadeau
-la FNAC
-bientôt
-Ah, bon?
-Ah, bon?
-une histoire
-ou
-un ordinateur
-un CD/des CD
-il y a
-il y a
-il y a
-ensemble
-ensemble
-d’abord
-Qu’est-ce qu’il y a?
-Bien sûr!
-Bien sûr!
-Bien sûr!
-préparer qc
-la France
-l’Allemagne )f.)
-en Allemagne
-Allô?
-un train
-Cologne
-demain
-ton/ta/tes
-mon/ma/mes
-C’est dommage.
-inviter qn
-allemand
-en allemand
-à bientôt
-maman (f.)
-maman (f.)
-une chambre
-une bougie
-un gâteau/des gâteaux
-ranger qc
-s’il te plaît
-s’il vous plaît
-maintenant
-une affaire
-une affaire
-toujours
-aujourd’hui
-une famille
-un enfant
-les grands-parents (m.)
-un grand-père
-les parents (m.)
-un père
-une mère
-un oncle
-une tante
-un fils
-une demi-sœur
-un demi-frère
-un cousin/une cousine
-décembre (m.)
-son/sa/ses (+ Nomen)
-son/sa/ses (+ Nomen)
-C’est ça?
-encore
-un DVD
-un jeu/des jeux
-un jeu vidéo/des jeux vidéo
-la faim
-avoir faim
-manger qc
-souffler qc
-puis
-chanter
-un an
-avoir onze ans
-l’envie )f.)
-l’envie )f.)
-avoir envie de faire qc
-sur
-sur
-une surprise
-avoir
-un mois
-une année
-janvier (m.)
-février (m.)
-mars (m.)
-avril (m.)
-mai (m.)
-juin (m.)
-juillet (m.)
-août (m.)
-septembre (m.)
-octobre (m.)
-novembre (m.)
-décembre (m.)
-quand
-le premier
-l’âge )m.)
-Tu as quel âge?
-il s’appelle
-la Pentecôte
-Noël (m.)
-le nouvel an
-le baptême
-le 14 Juillet
-Pâques
-le mariage
-
-
+un anniversaire, ein Geburtstag
+une idée, eine Idee; ein Gedanke
+des, des ist der Plural (die Mehrzahl) von un und une .
+un cadeau/des cadeaux, ein Geschenk/Geschenke
+aujourd’hui, heute
+la FNAC, die FNAC
+il y a, es gibt; es ist; es sind
+un CD/des CD, eine CD/CDs
+bientôt, bald
+"Ah, bon?", Ach ja?; Wirklich?
+ensemble, gemeinsam; zusammen
+une histoire, eine Geschichte
+ou, oder
+un ordinateur, ein Computer
+acheter qc, etwas kaufen
+d’abord, zuerst
+Bien sûr!, Sicherlich!; Na klar!; Selbstverständlich!
+Qu’est-ce qu’il y a?, Was gibt es?
+préparer qc, etwas vorbereiten
+la France, Frankreich
+l’Allemagne (f.), Deutschland
+en Allemagne, in Deutschland
+Allô ?, Hallo? (am Telefon)
+Pirou, Familienname
+un train, ein Zug
+Munich, München
+demain, morgen
+ton/ta/tes, dein/deine
+mon/ma/mes, mein/meine
+C’est dommage., Das ist schade.
+inviter qn, jemanden einladen
+allemand, deutsch
+en allemand, auf Deutsch
+A bientôt!, Bis bald!
+maman (f.), Mama; Mutti
+une chambre, ein (Schlaf-)Zimmer
+une bougie, eine Kerze
+un gâteau/des gâteaux, ein Kuchen/Kuchen
+ranger qc, etwas aufräumen
+s’il te plaît, bitte (wenn man jemanden duzt)
+maintenant, jetzt
+un jeu/des jeux, ein Spiel/Spiele
+un jeu vidéo/des jeux vidéo, ein Computerspiel/Computerspiele
+une affaire, eine Sache; eine Angelegenheit
+comme, wie
+préférer, vorziehen; lieber mögen
+toujours, immer
+une famille, eine Familie
+un/une enfant, ein Kind
+les grands-parents (m.), die Großeltern
+un grand-père, ein Großvater
+les parents (m.), die Eltern
+un père, ein Vater
+une mère, eine Mutter
+un oncle, ein Onkel
+une tante, eine Tante
+un fils, ein Sohn
+une demi-sœur, eine Halbschwester
+un demi-frère, ein Halbbruder
+un cousin/une cousine, ein Cousin/eine Cousine
+son/sa; ses (+ Nomen), sein/seine; ihr/ihre
+C’est ça ?, Stimmt’s?
+avoir, haben
+encore, noch
+un DVD, eine DVD
+avoir faim, Hunger haben
+manger qc, etwas essen
+souffler qc, etwas ausblasen
+puis, dann
+chanter, singen
+avoir onze ans, elf Jahre alt sein
+avoir envie de faire qc, "Lust haben, etwas zu tun"
+sur, auf; über
+une surprise, eine Überraschung
+un mois, ein Monat
+une année, ein Jahr
+quand, wann
+le premier, der erste
+janvier (m.), Januar
+février (m.), Februar
+mars (m.), März
+avril (m.), April
+mai (m.), Mai
+juin (m.), Juni
+juillet (m.), Juli
+août (m.), August
+septembre (m.), September
+octobre (m.), Oktober
+novembre (m.), November
+décembre (m.), Dezember
+l’âge (m.), das Alter
+il s’appelle, er heißt
+treize, dreizehn
+quatorze, vierzehn
+quinze, fünfzehn
+seize, sechzehn
+dix-sept, siebzehn
+dix-huit, achtzehn
+dix-neuf, neunzehn
+vingt, zwanzig
+vingt-et-un, einundzwanzig
+vingt-deux, zweiundzwanzig
+vingt-trois, dreiundzwanzig
+vingt-quatre, vierundzwanzig
+vingt-cinq, fünfundzwanzig
+vingt-six, sechsundzwanzig
+vingt-sept, siebenundzwanzig
+vingt-huit, achtundzwanzig
+vingt-neuf, neunundzwanzig
+trente, dreißig
+trente et un, einunddreißig
+trente-deux, zweiunddreißig
+trente-trois, dreiunddreißig
+trente-quatre, vierunddreißig
+trente-cinq, fünfunddreißig
+trente-six, sechsunddreißig
+trente-sept, siebenunddreißig
+trente-huit, achtunddreißig
+trente-neuf, neununddreißig

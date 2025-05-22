@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unité 0 - Faire des phrases</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .sentence-ex {
+            font-size: 1.2em;
+            margin: 30px 0 18px 0;
+            padding: 18px 20px;
+            background: #f9f9f9;
+            border-radius: 14px;
+            border: 1.5px solid #50a3a2;
+            box-shadow: 0 2px 8px rgba(80,163,162,0.07);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 60px;
+        }
+        .drop-gap {
+            min-width: 60px;
+            min-height: 36px;
+            border: 2px dashed #50a3a2;
+            border-radius: 10px;
+            background: #eaf7f7;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 8px;
+            text-align: center;
+            font-size: 1.1em;
+            transition: background 0.2s, border 0.2s;
+        }
+        .drop-gap.filled {
+            background: #d0f5e8;
+            border: 2px solid #5cb85c;
+        }
+        .draggable-word {
+            display: inline-block;
+            padding: 8px 18px;
+            margin: 8px 10px 8px 0;
+            background: #50a3a2;
+            color: #fff;
+            border-radius: 18px;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: grab;
+            box-shadow: 0 1px 6px rgba(80,163,162,0.10);
+            user-select: none;
+            transition: background 0.2s;
+        }
+        .draggable-word.dragging {
+            opacity: 0.7;
+            background: #3b8686;
+        }
+        .draggable-word.correct {
+            background: #5cb85c;
+        }
+        .draggable-word.incorrect {
+            background: #d9534f;
+        }
+        #check-answers-btn {
+            margin: 30px 0 10px 0;
+            padding: 10px 28px;
+            font-size: 1.1em;
+            background: #50a3a2;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #check-answers-btn:hover {
+            background: #3b8686;
+        }
+        #feedback-area {
+            font-size: 1.1em;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Unité 0 : Faire des phrases</h1>
+        <p><a href="../unit0.html">Retour à l'Unité 0</a></p>
+    </header>
+    <main>
+        <section>
+            <div class="sentence-ex" data-index="0">
+                <span class="drop-gap" data-answer="Salut"></span>! Je m'appelle Sarah!
+            </div>
+            <div class="sentence-ex" data-index="1">
+                Comment ça <span class="drop-gap" data-answer="va"></span>?
+                <span class="drop-gap" data-answer="Merci"></span>, ça va bien.
+            </div>
+            <div id="draggable-words-area">
+                <span class="draggable-word" draggable="true">Salut</span>
+                <span class="draggable-word" draggable="true">va</span>
+                <span class="draggable-word" draggable="true">Merci</span>
+            </div>
+            <button id="check-answers-btn">Vérifier les réponses</button>
+            <div id="feedback-area"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Jennifer Matos</p>
+    </footer>
+    <script>
+        // Drag and drop logic
+        const draggables = document.querySelectorAll('.draggable-word');
+        const gaps = document.querySelectorAll('.drop-gap');
+        let dragged = null;
+
+        draggables.forEach(word => {
+            word.addEventListener('dragstart', e => {
+                dragged = word;
+                word.classList.add('dragging');
+            });
+            word.addEventListener('dragend', e => {
+                word.classList.remove('dragging');
+            });
+        });
+
+        gaps.forEach(gap => {
+            gap.addEventListener('dragover', e => {
+                e.preventDefault();
+                gap.style.background = '#d0f5e8';
+            });
+            gap.addEventListener('dragleave', e => {
+                gap.style.background = '';
+            });
+            gap.addEventListener('drop', e => {
+                e.preventDefault();
+                gap.style.background = '';
+                if (dragged) {
+                    // Remove any existing word in the gap
+                    if (gap.firstChild) {
+                        // Move the word back to the word bank
+                        document.getElementById('draggable-words-area').appendChild(gap.firstChild);
+                    }
+                    gap.appendChild(dragged);
+                    gap.classList.add('filled');
+                }
+            });
+        });
+
+        // Allow words to be dragged back to the word bank
+        const wordBank = document.getElementById('draggable-words-area');
+        wordBank.addEventListener('dragover', e => {
+            e.preventDefault();
+        });
+        wordBank.addEventListener('drop', e => {
+            e.preventDefault();
+            if (dragged) {
+                // Remove from any gap
+                if (dragged.parentElement.classList.contains('drop-gap')) {
+                    dragged.parentElement.classList.remove('filled');
+                }
+                wordBank.appendChild(dragged);
+                dragged.classList.remove('correct', 'incorrect');
+            }
+        });
+
+        // Check answers
+        document.getElementById('check-answers-btn').addEventListener('click', () => {
+            let correct = 0;
+            gaps.forEach(gap => {
+                const answer = gap.getAttribute('data-answer');
+                const child = gap.firstChild;
+                if (child && child.textContent.trim() === answer) {
+                    child.classList.add('correct');
+                    child.classList.remove('incorrect');
+                    correct++;
+                } else {
+                    if (child) {
+                        child.classList.add('incorrect');
+                        child.classList.remove('correct');
+                    }
+                }
+            });
+            const feedback = document.getElementById('feedback-area');
+            if (correct === gaps.length) {
+                feedback.textContent = 'Bravo ! Toutes les réponses sont correctes.';
+                feedback.style.color = '#5cb85c';
+            } else {
+                feedback.textContent = `Tu as ${correct} bonne(s) réponse(s) sur ${gaps.length}. Essaie encore !`;
+                feedback.style.color = '#d9534f';
+            }
+        });
+    </script>
+</body>
+</html>

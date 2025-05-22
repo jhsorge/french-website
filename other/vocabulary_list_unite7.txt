@@ -1,112 +1,98 @@
-une semaine
-un reportage
-une ville
-un assistant/une assistante
-un endroit
-un touriste/une touriste
-le Louvre
-un musée
-une cathédrale
-Notre-Dame
-la Défense
-moderne
-l’Arc de triomphe (m.)
-visiter qc
-beau
-Il fait beau.
-faire de l’escalade
-chaud/chaude
-chaud/chaude
-Il fait chaud.
-la vue
-un restaurant
-une boutique
-une boutique
-un souvenir
-un souvenir
-un bureau
-un bureau
-un bureau
-Eiffel, Gustave
-écrire qc à qn
-une carte
-une carte postale
-une carte postale
-le vent
-Il y a du vent.
-beaucoup de
-le temps
-Quel temps fait-il?
-froid/froide
-neiger
-Il fait mauvais.
-pleuvoir
-Il pleut.
-Il fait froid.
-lire qc/qc à qn
-lire qc/qc à qn
-Cher …/Chère …
-papi/papy (fam.)
-mamie ugs.
-génial/géniale
-génial/géniale
-la Joconde
-une bise (fam.)
-une bise (fam.)
-Coucou!
-Comment allez-vous?
-un million
-un kilomètre
-tôt (adv.)
-un bus
-une station
-une station
-le métro
-le métro
-fatigué/fatiguée
-par jour
-par jour
-un moyen de transport
-un peu
-la gare de l’Est
-un ticket
-un ticket
-écologique/écologique
-écologique/écologique
-en train
-un avion
-un marché
-un marché aux puces
-ne … pas de
-pas de problème
-une chose
-une chose
-un exemple
-par exemple
-on peut
-pratique/pratique
-ne … plus
-ne … plus de
-plus de problème
-inventer qc
-cher/chère
-ouvert/ouverte
-adorer qn/qc
-désirer qc
-(je suis) désolé/désolée
-peu de
-beaucoup de
-un grand huit
-vrai/vraie
-vrai/vraie
-vrai/vraie
-un parc d’attractions
-un parc d’attractions
-un lecteur/une lectrice
-l’Internet )m.)
-sur Internet
-ne … rien
-une liste
-une réponse
-adorer qn/qc
-
+une semaine, eine Woche
+un reportage, eine Reportage
+une ville, eine Stadt
+un assistant/une assistante, ein Assistent/eine Assistentin
+visiter qc, etwas besichtigen
+un endroit, ein Ort
+un touriste/une touriste, ein Tourist/eine Touristin
+un journaliste/une journaliste, ein Journalist/eine Journalistin
+le Louvre, der Louvre
+un musée, ein Museum
+une cathédrale, eine Kathedrale
+Notre-Dame, Notre-Dame (Kathedrale im Zentrum von Paris)
+une église, eine Kirche
+une tour, ein Turm
+la Défense, Stadtteil von Paris
+la Grande Arche, modernes Bürogebäude im Stadtteil La Défense
+moderne, modern
+l’Arc de triomphe (m.), der Arc de triomphe (Triumpfbogen)
+un monument, ein Denkmal; ein Monument; eine Sehenswürdigkeit
+célèbre/célèbre, berühmt
+quel/quelle; quels/quelles, welcher/welche/welches (Fragebegleiter)
+un nom, ein Name
+ce(cet)/cette/ces, dieser/diese/dieses (Demonstrativbegleiter)
+une réponse, eine Antwort
+un arbre, ein Baum
+un fan/une fan, ein Fan
+la place du Trocadéro, Platz und Metrostation in Paris
+une personne, eine Person
+la tour Eiffel, der Eiffelturm
+intéresser qn, jdn. interessieren
+Versailles, "Stadt westlich von Paris, in der ein großes und weltberühmtes Schloss"
+lire qc, etwas lesen
+un guide/une guide, ein Führer/eine Führerin
+la vue, die Aussicht
+écrire qc à qn, jemandem etwas schreiben
+une carte, eine Karte
+une carte postale, eine Postkarte; eine Ansichtskarte
+un restaurant, ein Restaurant
+une boutique, eine Boutique; ein Ladengeschäft
+un souvenir, eine Erinnerung; ein Andenken
+peut-être, vielleicht
+un bureau, ein Büro; ein Schreibtisch; hier: ein Arbeitszimmer
+"Eiffel, Gustave", "französischer Ingenieur, 1832–1923, Konstrukteur des Eiffelturms"
+avant, vor (zeitlich); vorher
+un texto, eine SMS
+papi (fam.), Opi (ugs.)
+mamie (fam.), Omi (ugs.)
+Comment allez-vous ?, Wie geht es euch/Ihnen?
+génial/géniale; géniaux/géniales, super; genial
+un bisou (fam.), ein Küsschen; ein Busserl (ugs.)
+la Joconde, "Mona Lisa (Gemälde von Leonardo da Vinci, das im Louvre hängt)"
+une bise (fam.), ein Kuss; ein Küsschen
+Coucou!, Kuckuck!; Hallo!
+Grosses bises, Viele Grüße und Küsse
+bouger, sich bewegen
+pouvoir faire qc, etw. tun können
+faire attention, aufpassen; Acht geben
+un bol, ein Bol (eine Trinkschale)
+le petit-déjeuner, das Frühstück
+adorer qn/qc, jemanden/etwas sehr gern mögen
+une baguette, ein Baguette
+une tartine, eine Scheibe Brot mit Aufstrich
+vouloir faire qc, etw. tun wollen
+un bateau/des bateaux, ein Boot; ein Schiff
+un bateau-mouche, ein Vergnügungsschiff auf der Seine
+la Seine, "Fluss, der durch Paris fließt"
+un site (Internet), eine Internetseite
+Internet (m.), das Internet
+faire un tour en segway, eine Segway-Tour machen
+on pourrait, man könnte
+si, wenn; falls
+le Centre Pompidou, Kunst- und Kulturzentrum in Paris
+Patatras !, Bumms!
+il n'en peut plus, er kann nicht mehr; er kann es nicht fassen
+un guide/une guide, ein Führer/eine Führerin
+une fois, einmal
+(je suis) désolé/désolée, es tut mir leid
+depuis, seit
+un million, eine Million
+un kilomètre, ein Kilometer
+tôt (adv.), früh (Adv.)
+un bus, ein Bus
+une station, eine Station; eine Haltestelle
+le métro, die Metro; die U-Bahn
+fatigué/fatiguée, müde
+par jour, pro Tag; täglich (Adv.)
+un moyen de transport, ein Verkehrsmittel
+un peu, ein wenig
+en train, mit dem Zug
+la gare de l’Est, der Gare de l’Est (der Ostbahnhof)
+un ticket, ein Fahrschein; eine Fahrkarte
+l’arrivée (f.), die Ankunft
+le Batobus, Verkehrsmittel auf der Seine
+écologique/écologique, ökologisch; umweltfreundlich
+un billet, eine Fahrkarte
+changer de train, umsteigen
+demain matin, morgen früh
+un avion, ein Flugzeug

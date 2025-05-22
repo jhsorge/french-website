@@ -1,120 +1,87 @@
-un collège
-une cour
-un élève/une élève
-un cours
-l’allemand )m.)
-un retard
-être en retard
-un CDI
-une cantine
-une cantine
-une infirmerie
-Aïe!
-un pied
-jouer
-Balzac, Honoré de
-une journée
-une heure
-sept heures
-sept heures et demie
-sept heures moins le quart
-sept heures et quart
-un lit
-demi/demie
-les toilettes ( f.pl.)
-un quart
-huit heures et quart
-midi
-après
-après
-rentrer
-rentrer
-à la maison
-à la maison
-six heures moins le quart
-chez qn
-la télévision
-commencer
-commencer
-Quelle heure est-il?
-Quelle heure est-il?
-à quelle heure?
-de … à
-une clé
-une clé USB
-lundi (m.)
-lundi (m.)
-aller
-aller
-ne … pas
-la 6eA
-une minute
-une classe
-sous
-une salle de cours
-Excusez-moi.
-Excusez-moi.
-Excuse-moi.
-une place
-la main
-la récréation
-retrouver qn/qc
-retrouver qn/qc
-en 6eB
-raconter qc
-Il/Elle est à qui?
-Je ne sais pas.
-Ce ne sont pas mes affaires.
-discuter (de qc)
-discuter (de qc)
-un professeur/une professeure
-le temps
-l’emploi )m.) du temps
-mardi (m.)
-mardi (m.)
-mercredi (m.)
-mercredi (m.)
-jeudi (m.)
-jeudi (m.)
-vendredi (m.)
-vendredi (m.)
-samedi (m.)
-samedi (m.)
-dimanche (m.)
-dimanche (m.)
-un mot
-un gymnase
-un rêve
-cool (fam.)
-cliquer
-notre/nos
-votre/vos
-votre/vos
-leur/leurs
-une interrogation
-quelque chose
-un sac
-faire qc
-une copie
-un exercice
-si
-comme ça
-comme ça
-comme
-les devoirs (m. pl.)
-avoir raison
-une partie
-la fin
-un titre
-derrière
-l’E.P.S. )Education physique et
-sportive) (f.)
-les arts plastiques (m.)
-les S.V.T. (Sciences de la vie et de
-la terre) (f.)
-la technologie
-l’anglais )m.)
-les mathématiques (f.)
-l’histoire-géo )f.)
-l’éducation musicale )f.)
-le français
+un collège, ein Collège
+Balzac, Honoré de, "französischer Schriftsteller; 1799-1850"
+une cour, ein (Schul-)Hof
+une classe, eine Klasse
+un élève/une élève, ein Schüler/eine Schülerin
+jouer, spielen
+un cours, eine Unterrichtsstunde
+être en retard, zu spät kommen
+un CDI (contrat à durée indéterminée), ein CDI
+une cantine, eine Kantine; eine Mensa
+une infirmerie, eine Krankenstation
+Aïe !, Aua!
+un pied, ein Fuß
+une journée, ein Tag
+une heure, eine Stunde
+sept heures, sieben Uhr
+un lit, ein Bett
+sept heures et demie, halb acht
+les toilettes (f.) (pl.), die Toilette
+huit heures et quart, Viertel nach acht
+Racine, Familienname
+midi, zwölf Uhr (mittags)
+commencer, anfangen; beginnen
+après, nach; danach
+rentrer, zurückkommen; nach Hause gehen
+six heures moins le quart, Viertel vor sechs
+chez qn, bei jemandem
+la télévision, das Fernsehen
+Quelle heure est-il?, Wie viel Uhr ist es?; Wie spät ist es?
+à quelle heure?, um wie viel Uhr?
+de … à, von … bis
+une clé, ein Schlüssel
+lundi (m.), Montag; am Montag
+aller, gehen; fahren
+ne … pas, nicht
+la 6eA, die Klasse 6A
+une minute, eine Minute
+Barette, Familienname
+un professeur/une professeure, ein Lehrer/eine Lehrerin
+sous, unter
+quand, wenn; als (zeitlich)
+une salle de cours, ein Klassenraum
+Excusez-moi., Entschuldigen Sie.; Entschuldigung.
+une place, ein Platz
+la main, die Hand
+la récréation, die Pause
+retrouver qn/qc, jemanden treffen; etwas wiederfinden
+en 6eB, in der 6B
+raconter qc, etwas erzählen
+Il/Elle est à qui?, Wem gehört er/sie/es?
+Je ne sais pas., Ich weiß nicht.
+Ce ne sont pas mes affaires., Das sind nicht meine Sachen.
+discuter (de qc), (über etwas) diskutieren; sich (über etwas) unterhalten
+lundi (m.), Montag; am Montag
+mardi (m.), Dienstag; am Dienstag
+mercredi (m.), Mittwoch; am Mittwoch
+jeudi (m.), Donnerstag; am Donnerstag
+vendredi (m.), Freitag; am Freitag
+samedi (m.), Samstag; am Samstag
+dimanche (m.), Sonntag; am Sonntag
+le temps, die Zeit
+l’emploi (m.) du temps, der Stundenplan
+un mot, ein Wort
+un gymnase, eine Turnhalle
+un rêve, ein Traum
+cool (fam.), cool
+cliquer, klicken
+notre/nos, unser/unsere
+votre/vos, euer/eure; Ihr/Ihre
+leur/leurs, ihr/ihre
+une interrogation écrite, eine Schulaufgabe
+quelque chose, etwas
+un sac, eine Tasche
+faire qc, etw. machen; etw. tun
+une copie, eine Kopie
+un exercice, eine Übung
+si, doch
+comme ça, so; auf diese Weise
+avoir raison, recht haben
+ne … jamais, nie; niemals
+ne … plus, nicht mehr
+ne … rien, nichts
+les devoirs (m.) (pl.), die (Haus-)Aufgaben
+une partie, ein Teil
+un titre, Titel
+la fin, das Ende; der Schluss
+derrière, hinter

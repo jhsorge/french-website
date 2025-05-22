@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entraîneur de verbes - Unité 3</title>
+    <link rel="stylesheet" href="../css/style.css"> 
+    <link rel="stylesheet" href="../css/verb_trainer_style.css">
+</head>
+<body>
+    <header>
+        <h1>Unité 3 – Entraîneur de verbes</h1>
+        <nav>
+            <ul>
+                <li><a href="../unit3.html">Retour à l'unité 3</a></li>
+                <li><a href="vocab_unit3.html">Cartes mémoire</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Pratiquez la conjugaison des verbes de l'unité 3</h2>
+            <div id="verb-selection-area">
+                <h3>Sélectionnez les verbes à pratiquer :</h3>
+                <div id="verb-checkbox-list"></div>
+                <button id="start-practice-button">Commencer la pratique</button>
+            </div>
+            <div id="verb-practice-forms" class="hidden">
+                <button id="back-to-verb-selection-vt">Retour à la sélection</button>
+                <div id="conjugation-tables-container"></div>
+            </div>
+        </section>
+    </main>
+    <script src="../js/verb_trainer_app.js"></script>
+    <script src="../js/verbs_unit3.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof verbsUnit3 !== 'undefined') {
+                initVerbTrainerApp(verbsUnit3);
+            }
+        });
+    </script>
+</body>
+</html>

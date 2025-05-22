@@ -2,7 +2,7 @@
 const verbsUnit1 = [
     {
         infinitive: "être",
-        translation: "sein (to be)", // German translation for the infinitive
+        translation: "sein", // German translation for the infinitive
         conjugations: {
             je: "suis",
             tu: "es",
@@ -14,7 +14,7 @@ const verbsUnit1 = [
     },
     {
         infinitive: "avoir",
-        translation: "haben (to have)",
+        translation: "haben",
         conjugations: {
             je: "ai",
             tu: "as",
@@ -26,7 +26,7 @@ const verbsUnit1 = [
     },
     {
         infinitive: "s'appeler", // Example of a reflexive verb
-        translation: "heißen (to be called)",
+        translation: "heißen",
         conjugations: {
             je: "m'appelle",
             tu: "t'appelles",
@@ -38,7 +38,7 @@ const verbsUnit1 = [
     },
     {
         infinitive: "aller",
-        translation: "gehen (to go)",
+        translation: "gehen",
         conjugations: {
             je: "vais",
             tu: "vas",

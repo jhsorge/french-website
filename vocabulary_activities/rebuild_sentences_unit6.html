@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6 – Reconstituer les phrases</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .sentence-rebuild-container { margin: 30px auto; max-width: 700px; }
+        .rebuild-sentence { margin: 22px 0; font-size: 1.15em; min-height: 48px; display: flex; flex-wrap: wrap; gap: 8px; background: #fafdff; border-radius: 10px; padding: 12px 8px; border: 2px solid #50a3a2; }
+        .rebuild-dropzone { min-width: 60px; min-height: 32px; border: 2px dashed #50a3a2; border-radius: 8px; background: #e0f7fa; display: inline-block; margin: 0 4px; padding: 2px 8px; text-align: center; font-size: 1.1em; }
+        .rebuild-piece { display: inline-block; background: #50a3a2; color: #fff; border-radius: 12px; padding: 6px 18px; margin: 0 8px 8px 0; font-size: 1.1em; cursor: grab; user-select: none; transition: background 0.2s; }
+        .rebuild-piece.dragging { opacity: 0.5; }
+        .rebuild-piece.correct { background: #388e3c; }
+        .rebuild-piece.incorrect { background: #c62828; }
+        .rebuild-dropzone.filled { background: #b2ebf2; }
+        .rebuild-dropzone.correct { background: #c8e6c9; border-color: #388e3c; }
+        .rebuild-dropzone.incorrect { background: #ffcdd2; border-color: #c62828; }
+        .rebuild-choices-row { margin: 18px 0 24px 0; min-height: 48px; }
+        .rebuild-controls { margin: 18px 0; text-align: center; }
+        .rebuild-feedback { font-weight: bold; margin: 12px 0; }
+        .progress-bar-wrap { width: 100%; max-width: 420px; margin: 0 auto 18px auto; }
+        .progress-label { margin-bottom:4px;color:#3b8686;font-weight:bold;text-align:center; }
+        .progress-bar-bg { background:#e0f7fa;border-radius:12px;height:22px;overflow:hidden; }
+        .progress-bar-inner { height:100%;background:linear-gradient(90deg,#50a3a2 60%,#3b8686 100%);border-radius:12px 0 0 12px;width:0%;transition:width 0.4s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Unité 6 – Reconstituer les phrases</h1>
+        <nav>
+            <ul>
+                <li><a href="../unit6.html">Retour à l'unité 6</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="sentence-rebuild-container" id="rebuild-app-container"></div>
+    </main>
+    <script>
+const rebuildSentences = [
+    "Le chanteur|va chanter|une nouvelle chanson|au concert.",
+    "Nous|allons visiter Limoges|pendant les vacances.",
+    "La Fête de la musique|est|un grand événement|en France.",
+    "Mon groupe de rock|prépare|un nouveau texte.",
+    "Ce voyage en Finlande|va être|très intéressant.",
+    "Les musiciens|jouent|de l'accordéon et du piano|avec les chanteurs.",
+    "Si tu as un problème|tu peux parler|à tes parents.",
+    "Je suis très content|parce que je vais|au bal|ce soir.",
+    "Le TGV|est|un train très rapide|pour aller à Poitiers.",
+    "Quand il est triste|il fait la tête|et ne répond pas.",
+    "J'entends un loup|dans la forêt.|Les loups de Chabrières|sont célèbres.",
+    "Ma couleur préférée|est le rouge|mais j'aime aussi|le bleu.",
+    "Le poème|sur le Boulevard Louis Blanc|est très joli.",
+    "A Limoges|on trouve|de la belle porcelaine|surtout|dans les petits magasins.",
+    "Il|va donner|une casquette|à son ami|pour son anniversaire.",
+    "Peux-tu me montrer|tes photos|de la place Saint-Pierre|s'il te plaît ?",
+    "Il ne faut pas oublier|d'aider les autres|quand ils demandent|de l'aide.",
+    "Mon chanteur préféré|va donner un concert|à la gare d'Austerlitz.",
+    "Les gens|attendent le TGV|pour leur long voyage.",
+    "Après la grève|nous allons enfin entendre|notre groupe préféré.",
+    "Elle est petite|mais elle a|une grande voix|pour chanter.",
+    "Noël|est une fête|très importante|pour beaucoup de familles.",
+    "Le musicien|va perdre sa casquette|s'il danse trop.",
+    "Il répond toujours|au téléphone|quand sa grand-mère appelle.",
+    "Nous|allons descendre du train|et chercher un taxi|pour aller à l'hôtel.",
+    "Ce plat|est mauvais|je ne vais pas le manger.",
+    "Mon journal|est plein|d'histoires intéressantes|et de poèmes.",
+    "Le petit chat gris|aime jouer|entre les fleurs jaunes.",
+    "Je vais dire|à mon ami|que son idée|est très bonne.",
+    "Pour la fête|nous allons préparer|un gâteau|et beaucoup de bonnes choses."
+];
+const chunkSize = 5;
+let currentChunk = 0;
+function shuffle(array) {
+    let arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+function renderChunk() {
+    const container = document.getElementById('rebuild-app-container');
+    container.innerHTML = '';
+    const start = currentChunk * chunkSize;
+    const end = Math.min(start + chunkSize, rebuildSentences.length);
+    const chunk = rebuildSentences.slice(start, end);
+    // Progress bar
+    const percent = Math.floor((currentChunk * chunkSize / rebuildSentences.length) * 100);
+    const progressBar = document.createElement('div');
+    progressBar.className = 'progress-bar-wrap';
+    progressBar.innerHTML = `
+        <div class="progress-label">Progression : ${Math.min(currentChunk * chunkSize, rebuildSentences.length)} / ${rebuildSentences.length}</div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-inner" id="progress-inner" style="width:${percent}%"></div>
+        </div>
+    `;
+    container.appendChild(progressBar);
+    // Sentences
+    chunk.forEach((sentence, idx) => {
+        const parts = sentence.split('|').map(s => s.trim());
+        const shuffled = shuffle(parts);
+        const row = document.createElement('div');
+        row.className = 'rebuild-sentence';
+        row.dataset.idx = idx;
+        // Dropzones
+        for (let i = 0; i < parts.length; i++) {
+            const drop = document.createElement('span');
+            drop.className = 'rebuild-dropzone';
+            drop.setAttribute('data-drop-idx', i);
+            row.appendChild(drop);
+        }
+        container.appendChild(row);
+        // Choices
+        const choicesRow = document.createElement('div');
+        choicesRow.className = 'rebuild-choices-row';
+        shuffled.forEach((piece, i) => {
+            const span = document.createElement('span');
+            span.className = 'rebuild-piece';
+            span.textContent = piece;
+            span.setAttribute('draggable', 'true');
+            span.id = `piece-${idx}-${i}`;
+            span.addEventListener('dragstart', e => {
+                span.classList.add('dragging');
+                e.dataTransfer.setData('text/plain', piece);
+                e.dataTransfer.setData('piece-id', span.id);
+            });
+            span.addEventListener('dragend', e => {
+                span.classList.remove('dragging');
+            });
+            choicesRow.appendChild(span);
+        });
+        container.appendChild(choicesRow);
+    });
+    // Drag/drop logic
+    const pieces = container.querySelectorAll('.rebuild-piece');
+    const dropzones = container.querySelectorAll('.rebuild-dropzone');
+    dropzones.forEach(drop => {
+        drop.addEventListener('dragover', e => {
+            e.preventDefault();
+            drop.classList.add('filled');
+        });
+        drop.addEventListener('dragleave', e => {
+            drop.classList.remove('filled');
+        });
+        drop.addEventListener('drop', e => {
+            e.preventDefault();
+            drop.classList.remove('filled');
+            const pieceId = e.dataTransfer.getData('piece-id');
+            const piece = document.getElementById(pieceId);
+            if (piece) {
+                // Remove from previous parent
+                if (piece.parentElement) piece.parentElement.removeChild(piece);
+                drop.textContent = '';
+                drop.appendChild(piece);
+            }
+        });
+    });
+    // Controls
+    const controls = document.createElement('div');
+    controls.className = 'rebuild-controls';
+    const checkBtn = document.createElement('button');
+    checkBtn.textContent = 'Vérifier';
+    checkBtn.onclick = () => checkAnswers(chunk);
+    controls.appendChild(checkBtn);
+    if (end < rebuildSentences.length) {
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Suivant';
+        nextBtn.disabled = true;
+        nextBtn.id = 'next-chunk-btn';
+        controls.appendChild(nextBtn);
+    }
+    container.appendChild(controls);
+    // Feedback
+    const feedback = document.createElement('div');
+    feedback.className = 'rebuild-feedback';
+    feedback.id = 'rebuild-feedback';
+    container.appendChild(feedback);
+}
+function checkAnswers(chunk) {
+    const container = document.getElementById('rebuild-app-container');
+    const rows = container.querySelectorAll('.rebuild-sentence');
+    let allCorrect = true;
+    rows.forEach((row, idx) => {
+        const dropzones = row.querySelectorAll('.rebuild-dropzone');
+        const correctParts = chunk[idx].split('|').map(s => s.trim());
+        dropzones.forEach((drop, i) => {
+            const piece = drop.querySelector('.rebuild-piece');
+            if (piece && piece.textContent === correctParts[i]) {
+                drop.classList.add('correct');
+                drop.classList.remove('incorrect');
+                piece.classList.add('correct');
+                piece.classList.remove('incorrect');
+            } else {
+                drop.classList.add('incorrect');
+                drop.classList.remove('correct');
+                if (piece) {
+                    piece.classList.add('incorrect');
+                    piece.classList.remove('correct');
+                }
+                allCorrect = false;
+            }
+        });
+    });
+    const feedback = document.getElementById('rebuild-feedback');
+    if (allCorrect) {
+        feedback.textContent = 'Bravo ! Toutes les phrases sont correctes.';
+        // Fill progress bar to next chunk
+        const progressInner = document.getElementById('progress-inner');
+        const nextPercent = Math.floor(((currentChunk + 1) * chunkSize / rebuildSentences.length) * 100);
+        progressInner.style.width = `${nextPercent}%`;
+        // Update label
+        const progressLabel = progressInner.parentElement.previousElementSibling;
+        progressLabel.textContent = `Progression : ${Math.min((currentChunk + 1) * chunkSize, rebuildSentences.length)} / ${rebuildSentences.length}`;
+        // Enable next button if exists
+        const nextBtn = document.getElementById('next-chunk-btn');
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.onclick = () => {
+                currentChunk++;
+                renderChunk();
+            };
+        }
+    } else {
+        feedback.textContent = 'Corrige les phrases incorrectes puis réessaie.';
+    }
+}
+renderChunk();
+    </script>
+</body>
+</html>
